@@ -1,0 +1,5 @@
+= comp3231 =
+
+== lectures ==
+[[lectures/lecture1/main.wiki|lecture 1]]
+[[lectures/lecture2/main.wiki|lecture 2]]

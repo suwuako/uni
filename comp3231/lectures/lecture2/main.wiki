@@ -1,0 +1,72 @@
+= processes & threads =
+we expect operating systems (as developers and users) to interleave the execution of several processes to allow them all to progress efficicently (get machine to deal with more than one thing at one time)
+- this means that those applications will compete for resources
+    - for instnace, memory
+    - the more things we run, the more competition there is and thus the more the operating system needs to decide who gets what
+
+= how does it start? =
+given the issue of wnating to run more than one thing at a time, how do we start?
+
+this depends on the environment, like an embedded system, it starts when the machine boots up. 
+
+= technical jargon =
+- processes:
+    - also called a task or a job
+    - instnace of an execution of an individual program:
+        - this means that you can run the same binary multiple times, and that means there are separate processes - there are more than one copy for it
+    - the process is the owner of resources allocated for program execution:
+        - when the os allocates resources on the behalf of a process, it needs to keep track if somethign is in use or not - you cant reuse memory or else things will get corrupted.
+        - the os needs to bookkeep everything that its doing so it doesn't interfere with separate allocaitons and so it can reclaim the resources when a process if finished.
+        - the thing it uses to attribute an allocation to is the process
+    - a process can consist of one or more threads
+- threads:
+    - the sequence of execution through an application
+        - typically the code we have written is single threaded (i.e. we expect the code to go from start to finish through the program logic that we've written
+        - you're not expecting that the logic that we're writing will split in two parallel versions of the logic that runs in parallel with each other.
+    - can be traced so it lists the sequence of instructions that execute
+    - belongs to a process & executes within the thread
+
+= interleaving multiple processes (multiprocessing) =
+- you can have multiple processes loaded in a machine:
+    - there is a dispatcher - chooses which process to run next
+    - assume there there is a single CPU
+    - the hardware doesn't know there are multiple things to do - the only thing it knows how to do is look at the program counter and run that instruction & increment the counter:
+        - program counter points execution where the microprocessor thinks the next instruction is and it also happens to be the next instruction for the current thread
+    - assume the program A is loaded at address 5000, process B at 8000 and C at 12000:
+        - what the operating system does is that it starts the execution stream of one of those processes and it begins executing process A.
+        - it executes until a timeout occurs - in reality what this would be is that theres an interrupt from a timer in the microprocessor that the operating system sets up to fire at regular intervals to get the control again
+        - this means the program coutner goes back to the dispatcher
+        - thus, we cycle running a program, interrupting back to the dispatcher and then running a different program
+- what about running multiple processes and the program coutner?:
+    - in our previous example, we've had four processes are are being switched between, each having the illusion of having its own program counter
+    - the hardware only have one program counter, so the OS is handling the program counter to switch between what it was doing on one application and picking back up on what it was doing on another program coutner.
+
+= looking at processes & threads =
+- one process, one thread:
+    - msdos
+    - one process, multiple threads:
+    - os161 - one process, multiple threads of control
+    - multiple processes, one thread per process:
+    - traditional unix - if you wanted to more than one thing at a time, you would make multiple processes
+    - multiple processes, multiple threads per process:
+    - modern operating systems - windows, linux, etc
+- textbooks don't distinguish between processes and threads for historic reasons
+
+= process creation =
+there are many senarios - typically when a process starts there'll be a system registration or some kind of startup script that makes a list of things that runs on top of the OS
+
+if its an interactive program, its a foreground process and if its something you don't interact with, its a background process. 
+- background processes:
+    - email server, print server
+    - unix - daemon; windows - service
+    - ssh daemon listens for requests and creates a shell for you
+- technically, its the same mechanism that handles all the processes (fork and exec for unix; create_task in windows)
+
+= process termination =
+- normal exit (voluntary - return 0; etc etc)
+- error exit (voluntarily - detecting an error and exiting)
+- fatal error (involuntary - segfault)
+- killed by another process (involuntary)
+
+= keeping track of processes =
+
