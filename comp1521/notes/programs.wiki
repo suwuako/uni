@@ -1,0 +1,74 @@
+How do we execute programs?
+
+when programs aren't being ran, theyre stored on the disks. When you load them, it gets loaded into ram and the CPU runs the program
+
+= disks? =
+big, slow
+program gets moved from disk and loaded into ram
+
+= ram =
+small, fast
+
+
+= CPU =
+different CPU types
+- a program contains information on how to setup memory
+- how does the cpu know what to do?
+    - there are a finite number of instructions
+    - we assemble programs by combining the instructions in sequences
+        - e.g. if we have x = a + b then how do we get y = a + b + c
+        - temp = a + b
+        - y = temp + c
+    - the cpu is built to execute all the possible instructions
+    - i.e. the CPU implements an instruction set architecture
+- What can instructions do?
+    - load/store data
+    - computations (add, subtract, multiply, divide, bitwise)
+    - branch (jump to execute different instrcutions (if))
+    - syscalls (hi kernel pls do the thing i wnat thanks :D)
+    - coprocessor (do hard, special things that need special hardware)
+- directly writing instrucitons?
+    - We tend to write in a higher level compiled language
+        - C, C++, zig, go, rust, etc etc
+        - a compiler will input programs in these languages and output the assembly instructions
+- Whats in a cpu?
+    - data registers (rax, rbx, etc etc)
+    - you have a program counter that is the address of the instruction to run
+    - runs in a cycle where:
+        - an instruction is fetched from memory
+        - incrememnt program counter
+        - execute instruction
+        - repeat
+
+== Registers? ==
+- most cpu archs perform operations on registers
+- fast, but you dont have alot
+- MIPS has 32 registers
+    - 32 bits each
+    - floating point registers
+    - hi/lo registers for mul and div
+- almost all our computations happen between registers
+- rebisters have names (starts with $) or symbolic names
+    - $0 -> register 0 
+    - $ra is special
+    - $0 always contains 0 (also $zero)
+- conventiosn
+    - $t0-$t9 can be used however you want (t = temporary)
+    - $vo, $a0, $ra for certain things (i assume syscall)
+
+
+= Assembly =
+- instructions are just 1s and 0s
+- would kinda suck to write everything in 1s and 0s
+- we use assembly to form a human-readable representation of each instruction
+    - each instruction we write in asm is equal to one line of cpu instruction
+
+= tldr? =
+- we have a program in some language
+- we have a processor that runs some ISA (instruction set arch)
+- we compile the program into assembly and a binary
+- the binary is stored to a file
+- program is loaded into memory
+- its ran by the cpu
+- done
+

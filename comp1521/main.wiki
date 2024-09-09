@@ -1,0 +1,6 @@
+= comp 1521 =
+
+== Lectures ==
+Week 1
+
+[[notes/programs.wiki|programs?]]
