@@ -1,0 +1,45 @@
+= set notation =
+
+defiinition: a set is a defined, unordered collection of distinct objects
+notation: a set can be representing its elements surrounded by curly braces
+
+since sets are unordered, S = {3, 1, 2} = {1, 2, 3}
+
+since elements are distinct, repetiton is ignored so the set S can be written as S = {1, 2, 2, 3, 3, 3} = {1, 2, 3}
+
+elements of a set can be numbers, letters or any other object
+
+= defining sets =
+notation: the set membership symbol ∈ is used to indicated to say that it is an element of a set
+
+x ∈ S means x is an element of S we can also use the symbol 
+
+= numeric sets =
+we have our average sets for numbers
+N -> natural nums {0, 1, 2...}
+Z -> integers {-1, 0, 1...}
+Z+ -> positive ints (i.e. natural nums without 0) {1, 2, 3...}
+Q -> set of rational numbs (all ints and fracs)
+R -> set of real (all nums on real number line)
+C -> complex
+
+= empty set & cardinality =
+A = {x ∈ N | x < 5} -> {0, 1, 2, 3, 4}
+B = {n ∈ Z | n^2 = 4} -> {-2, 2}
+C = {x ∈ Z+ | x/2 ∈ Z} -> {2, 4, 6, 8...}
+D = {2k : k ∈ Z+} = {2, 4, 6, 8...}
+E = {x ∈ D : x !∈ R} = {}
+
+definition: set with no elements is the empty set, which is written as {} or o/
+definition: the cardinality or size of a set is the number of distinct elements it contains; we write |S to mean the cardinality of set S.
+tkae A = {1, 2, 3}, thus |A| = 3
+
+= sets within sets =
+sets can contain elements of any type; meaning that sets can be in other sets
+if we think of tuts as sets of students, then the set of all math tuts is a set containing sets
+
+for the set S= {1, 2, {3, 4}}, it contains 1, 2, and {3, 4}. this means that {3, 4} ∈ S. This means the cardinality is |S| = 3
+
+The elements aren't related to the lements of S nor the cardinality of S, meaning that 3 !∈ S
+
+gonna handwrite notes or use latex
