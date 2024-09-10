@@ -1,0 +1,13 @@
+= js fundamentals =
+
+== variables ==
+use let or const define vars - let is just declaring a general variable that can be modified and const cant be modified
+
+you can combine varialbes in strings with ```
+```js
+let k = "hi";
+let f = "bye";
+
+console.log(`${k} ${f}`);
+```
+
