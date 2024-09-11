@@ -1,6 +1,11 @@
 = comp 1521 =
 
+== running mips? ==
+you can run mipsy_web in the browser on the course website
+can emulate mips with mipsy
+
 == Lectures ==
 Week 1
 
 [[notes/programs.wiki|programs?]]
+[[notes/writing_mips.wiki|writing mips]]

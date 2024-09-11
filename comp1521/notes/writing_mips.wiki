@@ -1,0 +1,53 @@
+= precontent =
+
+most cpu archs preform operations over registers
+part of the processor, not memory
+its faster, faster than memory
+caches store memory for faster access
+
+== registers? ==
+- mips has 32 registers
+- 32 bits each
+- program counter:
+    - keeps track of what instruciton to be handled
+    - modified by branch and jump instructions
+
+main:
+    li      $t3, 7
+    li      $t4, 9
+    muil    $t1, $t3, $t4
+    
+    li      $v0
+    jr      $ra
+    
+li loads magic numbers into a register
+la copies addresses into a register
+move moves contents of a register into another
+
+= content =
+== decision making (if else) ==
+
+more compilcated if statments
+> split gotos into two lines
+
+``
+if (x > 48 || x < 10) // if x is greater than 48 or x is less than 10
+{
+    printf("bad");
+} else {
+    printf("all good);
+}
+printf("done");
+->
+if (x > 48) goto bad;
+if (x < 10) goto bad;
+
+printf("all good");
+goto end
+
+bad:
+printf("bad");
+
+end:
+printf("done");
+``
