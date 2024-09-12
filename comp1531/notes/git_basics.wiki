@@ -1,0 +1,7 @@
+= you already know this =
+
+git add <file> >> add file to staging
+git commit -m  >> locally commit to repo
+git push       >> push to remote repo
+git pull       >> pull from remote repo to local repo
+git merge      >> merge branches

@@ -2,3 +2,5 @@
 
 = Lecutres =
 [[notes/javascript.wiki|js]]
+[[notes/git_basics.wiki|git basics]]
+
