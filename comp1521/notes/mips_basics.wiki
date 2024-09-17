@@ -1,0 +1,36 @@
+= mips basics =
+
+== branching ==
+
+b ($register to compare), (label)
+`b -> branch, meaning you jump to a label`
+`bnez -> branch if not equals to zero`
+
+break/continue:
+    - break exits a loop
+    - continue proceeds to the nexxt iteration of the loop
+
+li, la, move
+li - load magic values
+la - loads addresses into register
+move - copy values betweent wo registers j
+
+== memory? ==
+* memory is a large 1D array
+* memory systems let us load and store bytes
+* bytes (typically 8 bits) has a unique address
+* loading byte:
+    * 1 byte - (byte)       - lb/sb
+    * 2 bytes - (half word) - lh/sh
+    * 4 bytes - (a word)    - lw/sw
+* mips let you load a constant + an offset
+
+order of storing bytes?
+* endian:
+    * endian comes from a book where people are trying to break it beginning of the little end or big end
+    * big endian - MSB at the low address - big bits first:
+        * i.e. 0x12345678 stored as
+        * 12 34 56 78
+    * little endian - MSB at the "high address" - big bits last:
+        * i.e. 0x12345678 stored as
+        * 78 56 34 12

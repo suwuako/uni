@@ -9,3 +9,6 @@ Week 1
 
 [[notes/programs.wiki|programs?]]
 [[notes/writing_mips.wiki|writing mips]]
+
+Week 2
+[[notes/mips_basics.wiki|mips basics]]
