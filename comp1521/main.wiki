@@ -12,3 +12,5 @@ Week 1
 
 Week 2
 [[notes/mips_basics.wiki|mips basics]]
+[[notes/first_program.wiki|your first program]]
+

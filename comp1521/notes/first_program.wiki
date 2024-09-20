@@ -1,0 +1,40 @@
+= your first program =
+
+byte - 1 byte
+half word - 2 bytes
+word - 4 byte quantity
+quad - 8 bytes
+
+sw - store value into a dereferenced pointer:
+sw $t1, ($t2)
+
+stores the value of t1 into the address of t2
+
+== labels ==
+we can tell mipsy to create space given a label:
+
+x:
+    .space 4
+    
+stores 4 byes at the address of x
+
+la lets you load the address of a given label into a register
+
+you can add a nuber to the register to go backwards or forwards by that register:
+
+```mipsy
+lw      $a0, 0($t1)
+```
+
+== arrays ==
+take note of the sizeof each item; an array of words should be indexed by:
+address:index * sizeof(item)
+
+    mul     $t1, $t0, 4
+    sw      $v0, arr($t1)
+
+=== 2d arrays: ===
+
+
+== data segment ==
+
