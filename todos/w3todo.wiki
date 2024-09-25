@@ -1,0 +1,52 @@
+plan:
+- [X] 1521 mon lec
+- [ ] 1531 lab
+- [ ] 1521 wed lec
+- [ ] 1521 lab
+- [ ] 1531 iter1 tests
+
+= math1081 =
+== lectures ==
+- [X] monday lec
+- [ ] tuesday lec
+- [ ] friday lec
+
+== lab work ==
+- [ ] monday tut
+- [ ] wednesday worksheet
+- [ ] numbas
+
+== housekeeping ==
+- [ ] lab test prep
+
+
+= comp1521 =
+== lectures ==
+- [X] monday lec
+- [ ] wednesday lec
+
+== lab work ==
+- [ ] 1521 lab
+
+== housekeeping ==
+- [ ] assignment
+
+
+= comp1531 =
+== lectures ==
+- [X] tues lec
+- [ ] thurs lec
+
+== lab work ==
+- [ ] 1531 lab
+
+== housekeeping ==
+- [ ] week 3 iter1
+    - [ ] tests
+    - [ ] function implementation
+
+= personal =
+== projects ==
+- [ ] OS
+- [ ] passman
+- [ ] vim-challenges

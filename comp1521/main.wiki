@@ -14,3 +14,5 @@ Week 2
 [[notes/mips_basics.wiki|mips basics]]
 [[notes/first_program.wiki|your first program]]
 
+Week 3
+[[notes/pointers-functions.wiki|pointers and functions]]

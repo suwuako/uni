@@ -1,0 +1,119 @@
+= function calls =
+in c, we have the typical:
+`
+result = func(expr1, expr2, ...);
+`
+functions are great!
+* no repeating yourself
+
+`
+int timesTwo(int x)
+{
+    int two_x = x * x;
+    return two_x;
+}
+`
+functions:
+* takes in an argument (x)
+* declaration (determines return type)
+* returns a value (two_x)
+
+= how do i call functions in asm? =
+you can use branches - but that makes it hard for functions to be called from more than one spot - 
+`start:
+    b function
+function:
+    b end
+end:`
+
+but if we were to call it from more than one place, it wont work!!! wtf :(
+
+== solving this function call issue ==
+the jump and link instruction (jal)
+* its like a branch - transfers execution to a place
+* changes the register ($ra) to the next address of the line (i.e. jal is called at memory addr 0x0000, thus $ra is now 0x0004)
+
+`start:
+    jal function
+    
+function:
+    jr $ra
+    
+end:
+    jal function`
+
+allows you to call function wherever you want and reutrn back...
+but theres an issue (what if you call a function inside your function? $ra will be modified and itll jump back to the function, but the function won't know where to go from there on
+
+also remeber - if you want to exit the program with `jr $ra` uh oh!!! that makes it jump back to the function - thus we need to store $ra at the program at its exit
+
+all this points to: neding to store $ra somewhere and once you're back you copy the value back!!
+
+one example can be:
+
+`start:
+    jal function
+    
+function:
+    move $t0, $ra
+    jal $ra
+    move $t0, $ra
+    jr $ra
+
+function1:
+    jr $ra
+
+end:`
+
+but this is problematic! what if you have 100 functions - or Its recursive!! $t0 will get changed. thus we need - the stack!
+
+=== the sigma stack ===
+stack grows down:
+
+`addi $sp, $sp -4 # you get a fresh 4 bytes
+sw $ra, 0($sp)`
+
+this mean sfunctions need to retuurn in sequence
+
+=== passing arguments? ===
+we can use the $a registers to pass in arguments
+we have $a0-$a3 (four registers to pass in argumnets)
+
+we can use the stack if we hteoretically had more than 4 arguments
+(but we dont need to deal with this in comp1521)
+
+=== returning valuess? ===
+we use $v registers to acquire returned values
+
+but you can have structs (infinite bytes) but registesr are limited(32 bits)
+so you would need to return an address on the stack...
+
+thus values occupying 32 bits or less should be returned using $v0
+
+== what are functions? ==
+function declarations are labels;
+
+== calling convetntions ==
+laysout rules on how we should be using registers when interfacing between different functions
+forms the MIPS ABI (application binary interface) which lays out how different code should interact with each other
+* the ABI set out a cpu architecture of how code will interface with other code (any other code) i.e. what registers are used to call a fucntion, what what registers are used to return, what do we put on stack if it doesnt fit
+
+$t are free real estate for a function (but functions can completely obliterate any exiting values in a $t register
+
+this implicates that the function caller must assume that the callee function has completely destroyed all values in $t registers
+
+"hey but my function doesnt touch $t0"
+I DONT GIVE A FUCK YOU MUST TREAT OTEHR FUNCTIONS LIKE BLACK BOXES
+1521 will destroy all existing vlaue in $t regsiters
+the term ofor 'obliterating' an existing vlaue instide a register without restoring it is "clobbering"
+
+so how do we do it?? save the $s/$ra regieter in ram at the start of the function
+restore the $s/$ra register original value from ram once complete
+
+stack grows downwards - we use thhe stack pointer ($sp) to keep track of the top of the stack
+we can modify the stack pointer to allocate more room on the stack for us to store values
+
+important convention!! functions can use the stack as they need - but $sp needs to be restored to its original value once its done
+
+we can also do push / pop (pseudo instructions) to allocate and load 4 byes on the stack
+
