@@ -1,0 +1,12 @@
+* mod
+  recall the div theorem: it states that for any int a and b, a can be represented as:
+
+  $a = qb + r$
+
+  same as modulo operator in compsc
+  ** modular congruence:
+     when we look at modulos, there are infinite many ints (x) that can give x mod 4 = 3. These numbers have something in common, and belong ot the same class; instead of saying 19 mod 4 = 47 mod 4, you can write a (congruent) b 
+
+
+     $a \\mod 3 = 4, b \\mod 3 = 4$
+     $a \\equiv b$
