@@ -1,7 +1,7 @@
 plan:
 - [X] 1521 mon lec
 - [ ] 1531 lab
-- [ ] 1521 wed lec
+- [X] 1521 wed lec
 - [ ] 1521 lab
 - [ ] 1531 iter1 tests
 
@@ -23,7 +23,7 @@ plan:
 = comp1521 =
 == lectures ==
 - [X] monday lec
-- [ ] wednesday lec
+- [X] wednesday lec
 
 == lab work ==
 - [ ] 1521 lab

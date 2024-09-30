@@ -16,3 +16,4 @@ Week 2
 
 Week 3
 [[notes/pointers-functions.wiki|pointers and functions]]
+[[notes/functions-summary.wiki|functions recap]]

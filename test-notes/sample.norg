@@ -1,0 +1,27 @@
+This is my note!!!!??
+*bold*
+/italic/
+_underline_
+^super^ and ,sub,script
+
+headings with stars:
+* heading here
+** nest them too!
+
+
+here is a list:
+- one
+- two
+- three
+
+
+and we have numbered lists too with \~
+
+   ~ ordered lists?
+   ~ two
+   ~ three
+
+and tasks?
+   - ( ) item 1
+   - ( ) item 2
+   - ( ) item 3
