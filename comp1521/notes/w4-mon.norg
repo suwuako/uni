@@ -1,0 +1,37 @@
+* bit patterns
+  bits actually differ between different devices, bytes can be either 4 or 8 
+  bits depending on the architecture - consider the following code: 
+  @code C
+  int main()
+  {
+      char c;
+      if(c = getchar() != EOF)
+      {
+      }
+  }
+  @end
+  whats wrong with that? getchar() actually returns an int!! which turns it into an int 
+  under the hood... 
+
+* bitwise operations
+  underlying everything is bits; what does the byte 0b1010011 mean?
+  - does it mean -93? (signed 1 byte int)
+  - does it mean 163? (unsigned 1 byte int)
+  - something else?
+
+  what do the bytes 0b01110011_01110010_01101001_00000000 mean?
+  - its up to us to decide how we interpret what those bytes mean
+  ** operations itself
+     CPUs typically provide instructions which operate on individual bits of values
+     - MIPS privodes 13 bit manipulation instructions
+     - C provides 6 operators:
+     @code C
+     x & y  // bitwise and
+     x | y  // bitwise or
+     x ^ y  // bitwise XOR
+     ~ x    // bitwise not
+     x << n // left shhift
+     x >> n // right shift
+     @end
+     @end
+     @end

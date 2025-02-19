@@ -1,0 +1,5 @@
+* shifting
+  consider that we have 8 bits (11111111) (1 byte) and how you interpret it; do you see it as an 
+  unsigned 8 bit integer (255) or a signed int (-127) when you bitshift, you might end up
+  converting that signed integer (-127) to 127 (unintended) when you were tryin gto divide
+  This is why mipsy offers different instructions to leave the most significant bit;

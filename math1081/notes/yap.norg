@@ -1,3 +1,43 @@
 * gcd
-  we know that GCD
+  we know that GCD is the greatest common divisor between two numbers;
+  gcd(a, b) yields a number (if applicable) that is the largest divisor
+  in this case, $gcd(12, 18) = 6$  fdsaf
+
+  ** eulers algorithm {https://proofwiki.org/wiki/Euclidean_Algorithm}[proof]
+     Consider:
+     $d = gcd(a, b), a, b \\in \\mathbb{Z}$
+     Euler has an algorithm to find the greatest common divisor of a and b; start with:
+     $\[\ |a| \\geq |b|\ \]$ if  $b = 0$ 
+     then the proof is complete, with $a$ being the GCD (since a = kb) where 
+     $k \\in \\mathbb{Z}$
+
+     if $b != 0$ then you take the remainder $r$ of $\\frac{a}{b}$
+
+     set a <- b, b <- r until b = 0
+
+    *** why does this work?
+        from the division theorem, we know that $a = qb + r$  where  $\[0 \\leq r \\l |b| \]$ 
+
+        we can then do $d = gcd(a, b)$  and by definition, this implies both:
+        $d | a, d | b$
+        hence, $a + b = dk + dm$
+        and implies $d|({a + b})$
+        using this, we can then infer that $d|({a - qb})$, which is in fact $d|{r}$
+        thus, d is a common divisor of a, b and r.
+
+        doing the same for $c, c \\in \\mathbb{Z}$ where b and r;
+        $c|({qb + r})$
+        implies $c|a$
+        which by definition, means that c =< d.
+        this then implies that d = gcd(b, r)
+
+        this can be repeated;
+
+        $gcd(a, b) = gcd(b, r_{1})$
+        $= gcd(r_1, r_2)$
+        = ...
+        $= gcd(r_{n+1}, r_n)$
+        $= gcd(r_n, 0)$
+        $\\therefore {= r_{n}}$
+
 

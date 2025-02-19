@@ -1,0 +1,13 @@
+* funcitons
+  recall that if A and B are sets, then $f: A \\rightarrow B$, meaning that
+  the function from A to B that takes each element of A to exactly one element of B, where
+  the set A is called hte domain and the set B is the codomain
+
+* what if we dont want it to be a function?
+  there are cases where we want to connect/relate sets A and B without the restriction
+  of elements on the domain appearing only once.
+  for example, with non zero reals, we might want to discuss both square roots.
+  we can't talk about a function that would take 4 to both 2 and -2, or -9 to both
+  3i and -3i
+
+

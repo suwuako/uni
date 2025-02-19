@@ -1,0 +1,14 @@
+* common divisors
+  if we have two integers; $a, b\\in \\mathbb{Z}$ an integer d such that:
+  1) $d | a$ and $d | b$
+  2) $c | a$ and $c | b$ and $c <= d$
+  then d is thhe greatest common divisor between a and b
+  consider the divisors of both a and b and convert it to all primes; all common primes
+  multiplied together WILL make up the greatest common divisor between a and b; since
+  we know that those numbers are divisors of eac other; lets take 18 and 30 for example
+  ** 18 and 30
+     the primes of 18 are: 2 * 3 * 3 
+     the primes of 30 are: 3 * 2 * 5 
+     considering that the common primes are: $2^1, 3^1$, the GCD is 6 (2 * 3)
+     thus, we can consider that the prime factorisation of the gcd as the common prime 
+     factors of a and b

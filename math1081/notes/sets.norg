@@ -1,0 +1,54 @@
+* sets
+  sets are a collection of items
+  an *element* is any object inside a set.
+  ** cardinality
+     the cardinality (denoted with for a set S is $\\ |S| =2$ for a set with 
+     two elements.
+  ** notation
+     we can specify a set by listing its elements in curly brackets with commas;
+     $S = \\{b, c\\}$
+     we can also specify properly that all elements must have:
+     $S = \\{x \\in \\mathbb{Z}: x > 4 \\}$
+     implies that the set S has only integers such that x > 4.
+  ** equality and subsets
+     a subset is a set where every element of it is also an element of a different
+     set.
+
+     let S and T be sets for example; $S = \\{a, b, c\\}$, $T = \\{a, c\\}$
+     since every element in T is an element of S, then T is a subset of S.
+     for equality, they need to be subsets of each other; i.e. all elements of
+     S are in T and all elements of T are in S;
+
+     a proper subset (S and T) implies that $S \\subset T$ and $S \\ne T$
+
+     a power set of a set $P(S)$ is all possible sets of a set;
+     let $S = \\{a, b, c\\}$
+     $P(S) = \\{\\{\\}, \\{a\\}, \\{b\\}, \\{c\\}, \\{a, b\\}, \\{a, c\\}, \\{b, c\\}, \\{a, b, c\\}\\}$
+  ** quirky things
+     repeated elements of a set doesn't get counted; i.e. 
+     let $S = \\{a, a, a\\}$
+     thus $S = \\{a\\}$ and $\\ |S| = 1$
+
+     the cardinality of the power set is given by:
+     $\\ |P(S)| = 2^{|S|}$
+    *** (informal) proof
+        for every item of a set, it can either be an element of a subset or not.
+        following this logic, you end up with $2^{|S|}$ numbers of valid subsets
+  ** set operations
+    *** difference
+        a difference of two sets (A, B) implies that $A-B$ where everything in A 
+        except for everything in B; 
+        .image ../assets/difference.png
+    *** complement
+        a complement of a set if everything except for it; $A^c$ 
+        .image ../assets/complement.png
+    *** union
+        a union is an "or", meaning that its one or both; $A \\Union B$ implies 
+        everything in A as well as B
+        .image ../assets/union.png
+    *** intersection
+        an intersection of two sets is everything in both sets; or an "and".
+        $A \\intersect B$
+        .image ../assets/intersect.png
+
+

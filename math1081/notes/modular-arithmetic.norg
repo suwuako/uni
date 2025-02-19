@@ -1,0 +1,24 @@
+* a modulus is the remainder when dividing:
+  ** modulus example:
+     87 (mod 5); 87/5 = 17 rem 2, meaning 87 (mod 5) = 2
+     14 (mod 12); 14 / 12 = 1 rem 2, thus 14 (mod 12) = 2 
+     5 (mod 10); 5 / 10 = 0 rem 5, thus 5 (mod 10) = 5
+  ** congruence
+     since there are infinite many modulos; take all numbers that yield 1 when (mod 5); 
+     this can be 1, 6, 11, 16, 21,... this means that we have a need for congruences;
+     where we can say that for ints $a, b, m \\in \\mathbb{Z}$, and $m, a, \\equiv b\\ (mod\\ m)$
+     if and only if theres an integer k such that $a = b + km$
+  ** arithmetic
+     if we know that for $a, b, c, d, m \\in \\mathbb{Z}$ and $a \\equiv b (mod\\ m) and c \\equiv d (mod\\ m)$
+     then we know that: $(a+c)\\equiv (b+d) (mod\\ m)$
+
+     heres the proof for that:
+     we know that to express a mod: $x \\equiv y (mod\\ m)$ you can write it as:
+     $x = y + mz, z \\in \\mathbb{Z}$
+
+     thus, we can express our expression as $a + c + xm$ and $b + d + ym$, with ints x, y
+     $(a + c + xm) = (b + d + ym)$
+
+  ** finding $ax \\equiv b\\ (mod\\ m)$
+     find gcd(a, m) = d. If d | b, then there are d solutions
+     using the euclidian algorithm in reverse, you can

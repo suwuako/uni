@@ -1,12 +1,22 @@
 * mod
-  recall the div theorem: it states that for any int a and b, a can be represented as:
+  recall the div theorem: it states that for any int a and b, a can be 
+  represented as:
 
   $a = qb + r$
 
-  same as modulo operator in compsc
+  same as modulo operator in compsci (we only look at $r$
   ** modular congruence:
-     when we look at modulos, there are infinite many ints (x) that can give x mod 4 = 3. These numbers have something in common, and belong ot the same class; instead of saying 19 mod 4 = 47 mod 4, you can write a (congruent) b 
-
-
+     when we look at modulos, there are infinite many ints (x) that can give x 
+     mod 4 = 3. These numbers have something in common, and belong ot the same 
+     class; instead of saying 19 mod 4 = 47 mod 4, you can write a (congruent) 
+     b 
      $a \\mod 3 = 4, b \\mod 3 = 4$
      $a \\equiv b$
+
+     there are also modular properties;
+     if $a \\equiv b (mod\\ m), and\\ k \\in \\mathbb{Z+}\\ satisfies\\ k|m$
+     then $a \\equiv b (mod\\ k)$
+     if $ak \\equiv bk\\ (mod\\ mk) for k \\in \\mathbb{Z^+}$
+     then $a\\equiv b (mod\\ m)$
+
+

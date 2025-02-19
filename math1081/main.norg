@@ -1,7 +1,13 @@
 * math1081
   ** Lecture notes
      {:notes/tldr:}[tldr]
-    *** week 3 
-        {:notes/w3-tues:}[tuesday notes]
 
+  ** summaries
+     {:notes/sets:}[sets]
+     {:notes/sets-proofs:}[set-proofs]
+     {:notes/common-divisors:}[common-divisors]
+     {:notes/modular-arithmetic:}[modular-arithmetic]
+     {:notes/relations:}[relations]
 * other
+  {:notes/yap:}[yap]
+

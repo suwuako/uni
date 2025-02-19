@@ -1,0 +1,64 @@
+* set proofs
+  the most common way to prove things with sets (especially subsets and equality)
+  is to for that for any arbitrary element x, it does something with the other set;
+  for instance, lets prove that if 
+  $A \\subset C\\ and\\ B \\subset C,\\ A\\cup B \\subset C$
+  ** example 1 
+     given that A is a subset of C and B also being a subset of C, we can suppose:
+
+     $x \\in A \\cup B$
+
+     this implies that $x \\in A\\ or\\ x \\in B$ (or both)
+
+     if $x \\in A, x \\in C$ and likewise, if $x \\in B, x \\in C$
+
+     in all possible cases, (x in A, in B or both) they both show that $x \\in C$,
+
+     which proves that $A \\cup B \\subset C$
+  ** example 2 
+     prove that if $A \\subset B$ and $A \\subset C$, then $A \\subset B \\cap C$
+
+     $let\\ x \\in A$
+
+     $\\because A\\subset B,\\ x\\in B$
+
+     $\\because A \\subset C,\\ x \\in C$
+
+     $\\because x \\in B\\ and\\ x \\in C,\\ x \\in (B\\cap C)$
+
+     since x was an arbitrary element of A, that implies that A is a subset of $B\\cap C$
+  ** example 3 
+     if $A \\subset B,\\ then\\ A\\cap B = A$
+
+     $let\\ x \\in A$
+
+     $\\because A\\subset B,\\ x \\in B$
+
+     remember for equality, we need to prove that both A is a subset of $A \\cap B$ as well
+     as $A\\cap B$ being a subset of A
+
+    *** A subset of AnB
+        $\\because x \\in A\\ and\\ x \\in B$
+
+        $\\therefore x \\in A \\cap B$
+
+        and since x is an element of A, that implies $A \\subset A\\capB$
+    *** AnB subset of A
+        let $y \\in A\\cap B$
+
+        this implies $y \\in A\\ \\&\\ y \\in B$
+
+        since $y \\in A$, this show that $A\\cap B \\subset A$
+
+        thus, $A = A\\cap B$
+
+  ** example 4 
+     is $A\\cap (B\\cup C) = (A\\cap B)\\cup C$
+     since this is an equality proof, we need to prove that LHS is a subset of RHS and vice versa
+     we can draw a diagram:
+     .image ../assets/example-4.png
+     An(BuC) = (AnB)uC
+
+     this means if an element x is in A and B, it will belong to both sides.
+     however, looking at LHS, if x is in A and C, it will be in RHS but not always in LHS 
+     unless it is also in B, thus disproving the identity.
