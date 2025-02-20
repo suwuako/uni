@@ -1,0 +1,41 @@
+* Algorithm analysis
+  - we want to compare programs with each otehr
+
+* program run speed
+  depends on things like:
+  - the os 
+  - compiler 
+  - cpu/gpu/cache speed
+  - type of algo
+
+* input size?
+  - usually larget inputs = longer runtime
+  - consider cases:
+    -- best case
+      --- whats the shortest amount of time an algo can solve
+      --- not very useful, only for specific types of input
+    -- average case
+      --- hard to measure and know how the program will be used
+    -- worst case
+      --- most importnat, determines how long it could run
+
+* time complexity
+  the amoutn of time an algo takes to run as a fn of the input size
+  - constants dont really matter
+  - onlt the highest degree will matter
+  ** measurement methods
+     empirically:
+     - measuring the time a program takes to run (like with a timer)
+
+     theoretically:
+     - counting the number of steps performed by the algo executed by thec pu
+  ** asymtopic analysis
+     this measures how the runtime changes based off the input size
+     - asymtopic behaviour isn't affected by lower order terms:
+       -- T(n) = 5n + 100, as n gets larger and larger, 100 means less and lessn.
+       -- assume T(n) = n^2. that means T(2n) = 4n^2
+       -- now assume that T(n) = 10n^2. That means that T(2n) = 4 * 10 * n^2.
+* Big o
+  - what we use to classift asymtopic behaviour in relation to time complexity.
+
+

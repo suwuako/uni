@@ -1,1 +1,28 @@
 * boolean algebra
+  - dual -> swap ORs with AND, and swap 0s with 1s
+  - order of operations; NOT first, then AND, then finally OR
+
+* synthesizing digital logic circuits
+  using AND, OR and NOT gates
+  | x1 | x2 | f(x1, x2) |
+  |----|----|-----------|
+  | 0  | 0  |     1     |
+  | 0  | 1  |     1     |
+  | 1  | 0  |     0     |
+  | 1  | 1  |     1     |
+  - implies that: function is 1 when x1 and x2 are 0, x1 is 0 and x2 is 1 and x1, x2 is 1.
+    thus we can combine this like:
+  - !x1*!x2 + !x1*x2 + x1*x2
+    -> draw the NOT 0
+  - !x1!x2 + !x1x2 + !x1x2 + x1x2
+  - !x1(!x2 + x2) + x2(!x1 + x1)
+  - !x1(1) + x2(1)
+  - !x1 + x2
+
+* circuit cost
+  - circuit cost -> no. of transistors used
+  - #transistors used -> chip area
+  - circuits with fewer gates makes it chepaer and less prone to issues
+  - larget chips will consume more powers (more transistors) and be slower (more distance travelled)
+
+
