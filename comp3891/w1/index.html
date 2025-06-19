@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>What is an OS? - my uni notes!!!!</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "What is an OS?";
+        var mkdocs_page_input_path = "comp3891/w1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> my uni notes!!!!
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comp3211-home/">COMP3211</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comp2511-home/">COMP2511</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comp3891-home/">COMP3891</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">my uni notes!!!!</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">What is an OS?</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="what-is-an-os">What is an OS?</h1>
+<ol>
+<li>
+<p>An operating system is the abstraction that helps connect userspace and hardware! There
+   are many layers of abstractions built for us: we have C code thats been compiled, which
+   relies on system libraries (think cstdlib), which makes use of syscalls which are
+   provided by the OS! e.g. We never manually interact with the filesystem</p>
+</li>
+<li>
+<p>Distribute resources! Imagine multiple users (or processes) trying to run their
+   program. How do we choose who evently recieves what data? the operating system is in
+   charge of that! It could be done through a policy as well (quota, first come first
+   serve, etc)</p>
+</li>
+<li>
+<p>from the perspective of the system, the OS is the software running in priviliged mode!
+   this could be like ring0 or whatever but there are physical hardware checks (think
+   lgdt, tss, etc in x86) Theres a flag set in hardware that shows if the current software
+   can do more stuff (accesss memory, etc)</p>
+</li>
+</ol>
+<h2 id="structure-of-a-system">Structure of a system?</h2>
+<p>Theres two 'bubbles' of a system: We usually have userspace and kernel mode. Applications
+in userspace make use of system libraries; which are just normal libraries as well. Its
+just ordinary code that interacts with the kernel to get stuff done. If you think about
+it, everything lives somewhere on memory. The operating system has the ability to view
+memory and theres some memory that can only be touched by the OS.</p>
+<p>If processes want to do stuff that involve os actions, they need to make use of syscalls,
+which are like function calls but its a protected way of nicely asking the os to do
+something for you. These can be written by yourself but most often you want to do them via
+syscalls (open, close, read, etc). These syscalls are then created to have another
+abstraction layer (malloc, memcpy, etc)</p>
+<p>tldr; the operating system is just code that has more power and that lets it interact with
+hardware (like memory)</p>
+<h2 id="system-approaches">System approaches</h2>
+<p>How should we arrange an OS internally? There <em>is</em> a layered by layer approach:
+dependencies point downwards into the core of the system. For instance, the usermode would
+be in the shell of the system, with layers of abstraction behind each other, with
+processor management and memoryu management at the core! However, this isn't really
+realistic. </p>
+<p>A different implimentation is a monolithic kernel; everything is interlinked with
+everything else! Think linux, windows, etc. However, a general prevailing structure will
+usually form.</p>
+<h1 id="processes-and-threads">Processes and threads</h1>
+<p>Remember how we said the os needs to be able to run more than one thing? The processor
+will give the os the ability to do so, but the processor itself cannot run more than one
+thing at once unless you have multithreading: but you still want more processes than you
+ahve threads. </p>
+<h2 id="what-is-a-process-what-is-a-thread">what is a process? what is a thread?</h2>
+<p>A process is closer to an abstraction of a thing that "runs", or a user level execution.
+It owns resources allocated for program execution. It encompasses one more more threads.</p>
+<p>A thread is the sequence of instruciotns that are ran. </p>
+<p>Think of processes as a space in memory of a thing to be executed, and a thread being the
+instructions that make up that process being ran</p>
+<h2 id="the-thread-model">the thread model</h2>
+<p>Assume there is a multithreaded process: At the langauge level; that means that each
+thread within the process has its own separate stack that can still share state (global
+varaibles) since they live in the same memory. But for local variables, they should have
+their own local variables (per thread)</p>
+<h3 id="scope">scope</h3>
+<ul>
+<li>local varialbes are per thread</li>
+<li>global variables are shared (written in the .bss segment i think)</li>
+<li>dynamically allocated variables could be local OR global... (think <code>malloc()</code>)</li>
+</ul>
+<h2 id="scheduling">Scheduling</h2>
+<p>So how do we run muiltiple processes on one thread? We can have a dispatcher (scheduler)
+that decides which process to run by having each process run for a few instructions,
+before returning back to the dispatcher which makes a jump. States have to be preserved in
+between (storing register data), loaded and restored. </p>
+<p>Using this, it appeares that multiple processes are running at once, but in reality only
+one program is active at one point. Thus, there is a model of having sequential processes
+with a single thread each "running" at the same time.</p>
+<h3 id="when-do-we-return-back-to-the-dispatcher">When do we return back to the dispatcher?</h3>
+<p>If you remember from our example of having programs scheduled in between, we jump between
+different processes by having program A run for a few instruction cycles before returning
+back to the dispatcher, which then decides on the next <em>ready</em> process to execute. How do
+we actually return back to the dispatcher in that instance?</p>
+<p>There is a feature within the CPU when certain hardware needs attention, it asks the CPU
+to stop executing its current instructions and then transition to the interrupt handler
+within the OS. Like a syscall, it forces a transition to the OS to timeout threads that
+have met its quota and transitions to the dispatcher (scheduler).</p>
+<h2 id="how-are-processes-created">How are processes created?</h2>
+<p>The os doesn't like setting things itself; it likes being reactive. Normally, that means
+handing it over to an init system (think systemd and openrc) that handles starting up
+other processes and etc. Theres different types of processes as well: foreground processes
+and background processes (known as daemons)</p>
+<p>Processes can start other processes as well! think login prompts that start you into a
+desktop environment once you login. All these processes mostly just make use of one
+syscall to create new processes!</p>
+<h2 id="how-to-processes-end">how to processes end?</h2>
+<ol>
+<li>normal exit (return 0)</li>
+<li>error exit (exit(1))</li>
+<li>fatal error (runtime error, div 0)</li>
+<li>kileld by another process (sigterm, ctrl-c)</li>
+</ol>
+<h2 id="implementation-of-processes">implementation of processes</h2>
+<p>What does the code/data that implements a process look like? It needs to hold metadata for
+the os to make use of, and is held within the process control block (PCB). The PCBs form a
+process table that shows</p>
+<p>Assume this is for a single thread/process model:</p>
+<p>process metadata would include: registers, program counter, stack pointer, process state,
+pointers to stack, text, data segments, process ID, cpu time used, children of CPU time,
+etc. these all are used by the operating system to control and make use of processes, like
+scheduling or terminating based off other processes.</p>
+<h2 id="threadsprocess-states">Threads/Process states</h2>
+<p>there can be alot of variable thread or process states. Ideally, we should have as many
+running processes as there are threads in cpus. </p>
+<p>running -&gt; ready
+    - voluntary <code>yield()</code>
+    - end of timeslice (quota)
+ready -&gt; running
+running -&gt; blocked
+    - waiting for input (file, network, keyboard)
+    - waiting for a timer <code>sleep()</code>
+    - waiting for a resource to become avaliable
+blocked -&gt; ready</p>
+<p>for the transition from runnign to ready for a thread, this could be a thread that is
+currently running, but its time budget is now used up and will be reassigned to a
+different process! It's still ready to run, its just not one of the ready threads.</p>
+<p>For ready -&gt; running, the currently running task got stopped so we need to replace the
+thread to keep the cpu busy. </p>
+<p>For running -&gt; blocked, something like a syscall could happen: a process wants to sleep(),
+or the process wants to use a syscall to fetch file contents. Its not current avaliable,
+so the thread becomes blocked. It's not allowed to run until some situation changes.
+Eventually, this will be ready to run again, which will put it from the blocked -&gt; ready
+state.</p>
+<h2 id="the-scheduler">The scheduler</h2>
+<p>The scheduler (or a dispatcher) has to pick things to run. It has to pick one of its ready
+threads to start! How does it do taht though...</p>
+<p>We could have a queue! the scheduler picks from the head of the queue!!</p>
+<p>What about blocked processes though? When an unblocking event happens (file is read,
+keyboard is inputted, network is recieved/sent), we <em>could</em> scan through all processes to
+check which processes to unblock, but thats inefficient!</p>
+<p>We could have a queue of blocked tasks for each blocked event, which will then trigger and
+push it to the end of the ready queue.</p>
+<h1 id="concurrency">Concurrency</h1>
+<p>Consider two pieces of code which shares a global varialbe <code>count</code>.</p>
+<pre><code>void increment()
+{
+    int t;
+    t = count;
+    t = t + 1;
+    count = t;
+}
+</code></pre>
+<pre><code>void decrement()
+{
+    int t;
+    t = count;
+    t = t - 1;
+    count = t;
+}
+</code></pre>
+<p>if both pieces of code were to be ran, there could be a race condition! imagine if the
+<code>increment()</code> thread were to hand over control to the <code>decrement()</code> thread after <code>t = t+1</code>
+This would mean that after decrement, count is decresed by 1. However, when the thread is
+handed back to increment(), count would be count + 1, intead of 0.</p>
+<h2 id="kernel-level-concurrency">Kernel level concurrency</h2>
+<p>Think back on scheduling. To run our dispatcher (scheudler), we would need a kernel level
+thread to execute that dispatcher, right? That would mean keeping track of queues of ready
+and blocked processes. Likewise, we need to upkeep the PCB (process control block) to
+ensure metadat is kept up to date.</p>
+<h2 id="critical-regions">Critical regions</h2>
+<p>A critical region is a position where a shared location is accessed. If uncorrindated
+access to this is done, then it coudl result in race conditions or other nasty stuff</p>
+<p>to ensure protection within critical regions, we can force different processes to wait
+until their turn:</p>
+<pre><code>                               A enteres critical region
+                               /-------------\
+</code></pre>
+<p>Process A: ------------------------===============----------------------------
+Process B: -----------------------------..........===========-----------
+                                        \---------/
+                                        B attempts to access critical region, fails.</p>
+<h2 id="solving-critical-regions">solving critical regions</h2>
+<p>We need to coordinate access to critical regions! We need to:
+- mutually exclude processes accessing critical regions
+- make no assumptions about the number of threads
+- no process running outside the critical region can block another process (defeats whole
+  point of multitrheading)
+- no process waits forever to enter critical region!</p>
+<h3 id="locks">Locks!!</h3>
+<p>We could haev a global lock varaible that won't let code execute if it is true. Code that
+did enter the critical region would set <code>lock = 1</code> and when its done will <code>lock = 0</code></p>
+<pre><code>while(TRUE) {
+    while(lock == 1)
+        ;
+    lock = 1;
+    critical();
+    lock = 0
+    non_critical();
+}
+</code></pre>
+<pre><code>while(TRUE) {
+    while(lock == 1)
+        ;
+    lock = 1;
+    critical();
+    lock = 0
+    non_critical();
+}
+</code></pre>
+<p>However, another issue may be posed: if the <code>while(lock == 1)</code> condition has passed for a
+process, then the thread is handed over to the other process, both locks will be 1, and
+the critical region will be hit! what do we do??</p>
+<h3 id="taking-turns">taking turns</h3>
+<p>We could take turns!! We have a global turn variable that specifies which thread is
+allowed to run (i.e. <code>turn = 0</code> represents process A, <code>=1</code> represents process B, etc)</p>
+<p>The problem with taking turns is that processes must wait to take their turn, even if
+other processes are doing something else.</p>
+<h3 id="hardware-support">hardware support</h3>
+<p>You can actually disable interrupts! its a builtin thing via hardware. The downsides is
+that it delays everyone else, and it doesnt work on multiprocessors :(</p>
+<h3 id="test-and-set">test and set</h3>
+<p>another hardware instruction! It's atomic, meaning that its the smallest unit of
+instruciton executable. Using this, it can test the value of a lock AND set it at the same
+time. </p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
