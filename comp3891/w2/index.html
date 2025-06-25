@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>os161 mips - my uni notes!!!!</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "os161 mips";
+        var mkdocs_page_input_path = "comp3891/w2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> my uni notes!!!!
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comp3211-home/">COMP3211</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comp2511-home/">COMP2511</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comp3891-home/">COMP3891</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">my uni notes!!!!</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">os161 mips</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="os161-mips">os161 mips</h1>
+<p>We are using mips r3000!</p>
+<ul>
+<li>risc architecture (reduced isa)</li>
+<li>some instruction shave imediate operands<ul>
+<li>values are constants within the instruction itself</li>
+<li><code>addi r2, r1, 2048</code></li>
+<li>instruction format: | ADD | IMM | R2 | R1 | 2048 |</li>
+</ul>
+</li>
+<li>registers!<ul>
+<li>32 general purpose registers</li>
+<li>r0 hardwired to 0</li>
+<li>r31 is a jal (jump and link)</li>
+<li>hi/lo are two 32 bits for multiply and divide</li>
+<li>PC is the program counter</li>
+</ul>
+</li>
+</ul>
+<h2 id="branches-and-jmumping">Branches and jmumping</h2>
+<ul>
+<li>branches and jumping have a branch delay slot<ul>
+<li>the instruction following a branch or jump is always executed
+prior to destination of jump</li>
+<li>this means that the instruction after the jump or branch is
+executed ontop before the branch happens</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-does-this-happen">why does this happen?</h3>
+<ul>
+<li>there are stages of executing an instruction!<ol>
+<li>load instruction</li>
+<li>register file</li>
+<li>load into ALU</li>
+<li>D-cache</li>
+<li>register fileo</li>
+</ol>
+</li>
+<li>the instructions don't get loaded at the same time!</li>
+</ul>
+<p>instruction 1: ------| IF | RD | ALU | MEM | WB |----------------------------</p>
+<p>instruction 2: --------------| IF | RD | ALU | MEM | WB |--------------------</p>
+<p>instruction 3: ----------------------| IF | RD | ALU | MEM | WB |------------</p>
+<h2 id="jump-and-link">jump and link</h2>
+<ul>
+<li>used to implement function calls</li>
+<li>return register <code>ra</code> is used to return from function call</li>
+</ul>
+<h2 id="mips-register-conventions">mips register conventions</h2>
+<ul>
+<li>(2-3) v0-v1: value returned by subroutine</li>
+<li>(4-7) a0-a3: first four parameters for subroutine</li>
+<li>(16-23) s0-s7: subroutine variables which must store and restore it</li>
+<li>(28) gp: global pointer for some systems to maintained to the global point</li>
+<li>(29) sp: stack pointer</li>
+</ul>
+<h2 id="jumping-to-subroutines">jumping to subroutines</h2>
+<p>when we switch/jump to a subroutine, we push the values we want to save to the stack
+before we jump! doing this repeatedly we can create stack frames on stack frames so we
+preserve the state of the current subprocess even if we call other processes.</p>
+<h1 id="context-switches">context switches</h1>
+<ul>
+<li>a context switch can refer to:<ul>
+<li>a switch between threads<ul>
+<li>saving, restoring state associated with a thread</li>
+</ul>
+</li>
+<li>a switch between processes</li>
+</ul>
+</li>
+</ul>
+<h1 id="process-abstrations">process abstrations!</h1>
+<h2 id="os-structure">os structure</h2>
+<p>from the hardware as the lowest level, you can haev layers of os functionality:</p>
+<p>from top down:</p>
+<h3 id="monolithic-kernel">monolithic kernel</h3>
+<ul>
+<li>processes                                       | usermode</li>
+<li>os services: Files, networking, etc         ---- ABI</li>
+<li>scheduler                                       | kernel</li>
+<li>dispatcher                                  ---- ISA</li>
+<li>hardware</li>
+</ul>
+<p>and the kernel is the blanket term for the content between abi and ISA</p>
+<p>but generally, you want to shrink the maount of code that is runnign in privileged mode.
+This means you can take out the os serves out of the kernel as a library</p>
+<h3 id="microexokernel">micro/exokernel</h3>
+<ul>
+<li>processes                                     | usermode</li>
+<li>os services                                   |</li>
+<li>scheduler                                 ----</li>
+<li>| priviliged mode (kernel)</li>
+<li>dispatcher                                ----</li>
+<li>hardware</li>
+</ul>
+<h3 id="library-os">library OS!</h3>
+<p>Since we could switch out the tailord OS services (system libraries), we can swap them out
+and run processes on TOP of different system libraries (bootstrap with different init
+systems)</p>
+<p>using this, these libraries give different "flavours" of the operating system. However,
+the library os's (think libc) aren't really secure and have simplified resource
+maagements. This means that functionally, they are insecure!! As a result, you need a
+security monitor layer ontop of the dispatcher within priviliged mode. </p>
+<h3 id="the-drawbridge-system">The drawbridge system</h3>
+<p>Traditionally, library os's change the api. that means that applications written aren't
+exactly portable beyond one library os.</p>
+<p>Drawbridge refactors the OS! You have a set of API compatible OS services within the
+library that makes use of host OS kernel services.</p>
+<h2 id="picoprocesses">Picoprocesses</h2>
+<ul>
+<li>picoprocesses are an isolated process weith different syscall interface than normal
+  processes. In this case, it could be a security monitor! (I dont fully understand
+  picoprocesses, but to my understanding its just a process that only uses kernel
+  syscalls)</li>
+</ul>
+<h1 id="back-to-virtual-machines">back to virtual machines</h1>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
