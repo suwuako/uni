@@ -1,7 +1,0 @@
-site_name: my uni notes!!!!
-nav:
-  - Home: index.md 
-  - COMP3211: comp3211-home.md 
-  - COMP2511: comp2511-home.md 
-  - COMP3891: comp3891-home.md
-theme: readthedocs
