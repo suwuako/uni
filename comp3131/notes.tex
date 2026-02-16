@@ -1,0 +1,184 @@
+\documentclass[journal, letterpaper]{IEEEtran}
+\usepackage{lipsum}
+\usepackage{titlesec}
+\usepackage[table]{xcolor}
+\usepackage{makecell}
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+
+
+\titleformat{\section}
+    {\centering\normalfont\Large\bfseries}
+    {}
+    {} 
+    {}
+
+\newtcolorbox{theory}[2][]{breakable,sharp corners, skin=enhancedmiddle jigsaw,
+parbox=false, boxrule=0mm, leftrule=2mm, boxsep=0mm, arc=0mm, outer arc=0mm,
+attach title to upper, after title={\ },
+coltitle=black, coltext=black,
+colback=blue!10, colframe=blue!50,
+title={#2}, fonttitle=\bfseries, #1}
+
+\newtcolorbox{example}[2][]{breakable,sharp corners, skin=enhancedmiddle jigsaw,
+parbox=false, boxrule=0mm, leftrule=2mm, boxsep=0mm, arc=0mm, outer arc=0mm,
+attach title to upper, after title={\ },
+coltitle=black, coltext=black,
+colback=gray!10, colframe=gray!50,
+title={#2}, fonttitle=\bfseries, #1}
+
+\newtcolorbox{aside}[2][]{breakable,sharp corners, skin=enhancedmiddle jigsaw,
+parbox=false, boxrule=0mm, leftrule=2mm, boxsep=0mm, arc=0mm, outer arc=0mm,
+attach title to upper, after title={\ },
+coltitle=black, coltext=black,
+colback=red!10, colframe=red!50,
+title={#2}, fonttitle=\bfseries, #1}
+
+
+\title{COMP3131 Notes}
+\author{Ronnie Low}
+\date{Term 1, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{theory}{Compiler components}\\
+    What are the parts of a compiler to generate machine code?
+    \begin{itemize}
+        \item Scanner - reads text \& produces tokens
+        \item *Recogniser - reads tokens and checks for syntax errors
+        \item Parser - builds abstract syntax tree (AST)
+        \item Static Semantics - checks semantics at compile time 
+        \item Code Generator - generates Java bytecode
+    \end{itemize}
+    $_{*the\ recogniser\ is\ part\ of\ the\ parser}$
+\end{theory}
+
+\begin{example}{Assessment}\\
+    What is this silly marking scheme lol\\
+    \\
+    \begin{tabular}{ c c c }
+        Component & Marks & Due\\
+        Scanner & 12 & w2\\
+        Recogniser & 12 & w3/4 \\
+        Parser & 18 & w5 \\
+        Static Semantics & 30 & w8\\
+        Code Generator & 28 & w10\\
+        Final & 100 & Apr/May\\
+    \end{tabular}
+\end{example}
+
+\begin{theory}{What is a Compiler?}\\
+    Compilers aim to:
+    \begin{itemize}
+        \item recognise legal and illegal programs
+        \item generate correct (hopefully efficient) code
+    \end{itemize}
+\end{theory}
+
+\begin{theory}{What is Lexical Analysis?}\\
+    Lexical analysis is conducted by scanners. It converts code into tokens!\\
+    Tokens are the basic unit of syntax; consider:
+    $$position = initial + rate * 60$$
+    In this case, this is broken down to:
+    \begin{itemize}
+        \item identifier "position"
+        \item assigment operator $=$
+        \item identifier "initial"
+        \item plus sign
+        \item identifer "rate"
+        \item multiplication sign
+        \item int const $60$
+    \end{itemize}
+
+\end{theory}
+
+\begin{theory}{What is Syntax Analysis}\\
+    A parser conducts syntax analysis.
+    Lets consider the aim of syntactic analysis:
+    \begin{itemize}
+        \item groups tokens into grammatical phrases
+        \item represents the graphical phases as an AST
+        \item produces meaningful error messages
+        \item attempts error detection and recovery
+    \end{itemize}
+
+    Syntactic analysis groups tokens into a selected format specified by a CFG
+    (context-free grammar)\\
+    \includegraphics[width=\textwidth]{img/cfg-example1.png}
+\end{theory}
+
+\begin{theory}{What is Semantic Analysis}\\
+    So whats the difference between syntax and semantic analysis?\\
+
+    Examples of semnatic errors are:
+    \begin{itemize}
+        \item variables before definition 
+        \item operands with incomplete types
+        \item procedures (fn) called with right number and types of arguments
+    \end{itemize}
+
+    Semantic analysis also conducts type checking! 
+    \begin{itemize}
+        \item Floats shouldn't be used to index an array
+        \item type conversions must be valid (String to class isnt valid!)
+        \item for instance, 1 in binary is 0b1. 1.0 in binary is
+            0b00111111100000000000000000000000. The conversion needs to be correct!
+    \end{itemize}
+\end{theory}
+
+\begin{theory}{What is Code Generation?}\\
+    Code generation creates an explicit IR. In our case, it generates it into Java
+    Bytecode
+\end{theory}
+
+\begin{aside}{Errors, Reporting \& Recovery}\\
+    Consider our types of detection:
+    \begin{itemize}
+        \item lexical errors -> "123" as an unterminated string or something that can't be
+        tokenized
+        \item syntax errors -> No closing parenthesis, no semicolon
+        \item semantic errors -> invalid type/number of operands for an operator
+    \end{itemize}
+
+    We want these errors to be reported as accurately (the location) as possible,
+    alongside the type of error. After detecting the error, we can choose to recover and
+    proceed, allowing more errors to be detected.
+\end{aside}
+
+\begin{example}{Tokens}\\
+    Tokens are 
+\end{example}
+
+\begin{example}{Lexmes}\\
+    lexemes are the character sequence (actual text of forming the token)
+\end{example}
+
+\begin{theory}{Patterns}\\
+    Patterns are rules that describe the set of lexemes that can represent a particular
+    token. As such, the pattern needs to match each string in the set.\\
+
+    Patterns are used to convert your lexemes into token types!
+\end{theory}
+
+\begin{example}{Regex, pattern matching}
+    We need a way to formally specify patterns! For instance, we need a way to match your
+    lexeme as a token!\\
+    Lets take an integer as example:
+    \begin{itemize}
+        \item intLiteral: digit (digit)*
+        \item digit: $0\|1\|...\|9$
+    \end{itemize}
+    Lets take a float as example:
+    \begin{itemize}
+        \item TODO:
+    \end{itemize}
+\end{example}
+
+\begin{example}{Finite State Machines}\\
+    You can also use finite state machines to describe patterns!\\
+    \includegraphics[width=\textwidth]{img/fsm-example1.png}
+\end{example}
+
+\end{document}

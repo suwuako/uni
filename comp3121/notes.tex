@@ -134,9 +134,17 @@ title={#2}, fonttitle=\bfseries, #1}
     case?\par\bigskip
 
     If we were to compare two algorithms, issues may occur!
-    \begin{itemize}
-        \item{Outliers}
-    \end{itemize}
+    We mostly perfer to talk in terms of long term behaviour (asymtopics)
+
+    For instance, if the size of an input doubles, the function could double, triple, or
+    even quadruple!
+\end{theory}
+
+\begin{theory}{Big O Notation} \\
+    We say that $f(n) \elemof O(g(n))$ if for large enough $n$, $f(n)$ is at most a
+    constant multiple of $g(n)$ \\
+    i.e. $f(n) = O(g(n))$ \\
+    As such, $g(n)$ is an asymtopic upper bound for $f(n)$
 \end{theory}
 
 \end{document}

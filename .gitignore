@@ -1,4 +1,5 @@
 site/
+tag
 *.aux
 *.fdb_latexmk
 *.fls
