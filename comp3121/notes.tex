@@ -4,6 +4,8 @@
 \usepackage[table]{xcolor}
 \usepackage{makecell}
 \usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{amssymb}
 
 
 \titleformat{\section}
@@ -134,17 +136,50 @@ title={#2}, fonttitle=\bfseries, #1}
     case?\par\bigskip
 
     If we were to compare two algorithms, issues may occur!
+    \begin{itemize}
+        \item{Outliers! We can see in the graph above that although $g$ is generally slower,
+        the fifth point has an outlier where $f$ is slower. How do we describe the changes/differences?}
+        \item{Implementation differences: what if $f'$ is slower than both $g$ and $f$, but $f'$ has a
+        different implementation?}
+    \end{itemize}
+    \includegraphics[scale=0.16]{assets/runtime_outlier.png}
     We mostly perfer to talk in terms of long term behaviour (asymtopics)
+
 
     For instance, if the size of an input doubles, the function could double, triple, or
     even quadruple!
 \end{theory}
 
 \begin{theory}{Big O Notation} \\
-    We say that $f(n) \elemof O(g(n))$ if for large enough $n$, $f(n)$ is at most a
-    constant multiple of $g(n)$ \\
-    i.e. $f(n) = O(g(n))$ \\
-    As such, $g(n)$ is an asymtopic upper bound for $f(n)$
+    We say that $f(n) = O(g(n))$ if: \\
+        \indent There are positive constants $C$ and $N$ such that \\
+        \indent $0 \leq{f(n)} \leq{C\times{g(n)}}$ for all $n \geq{N}$.\\
+    \\
+    What does that acutally mean? lets take a look at some examples.\\
+    \\
+    Is $f(n) = O(g(n))$ for: \\
+    \indent$f(n) = n + 5$, $g(n) = n^2-1$\\
+    \\
+    For this to hold true, there needs to be a value $n$ and $C$ such that
+    every single value of $f(n) \leq{g(n)}$. \textbf{Is this true?}\\
+    \\
+    Well, given a sufficiently large $n$, yes! Lets prove it:\\
+    Lets assign $C = 1$\\
+    \begin{gather}
+    f(n) = n + 5 < g(n) = n^2 - 1\\
+    0 < n^2 - n - 6\\
+    0 < (n - 3)(n + 2)\\
+    \therefore n \text{ is true for } n > 3 \text{ or } n < -2
+    \end{gather}
+    \\this implies that for values $C = 1$ and every value $n > 3$, this equation holds true!\\
+    In more human terms, we \textbf{need} to have a value $C$ that is multiplied with $g(n)$, 
+    and there \textbf{needs} to exist a value $n$ such that every value greater than $n$ will satisfy
+    \[
+        0 \leq f(n) \leq C \times g(n).
+    \]
+    In doing so, we can say that the for $f(n)$ (which is the function of input size vs time) has
+    a time complexity of $O(g(n))$ (keep in mind $g(n)$ will just be an equation that $f(n)$ will never
+    exceed.)
 \end{theory}
 
 \end{document}
