@@ -130,7 +130,8 @@ title={#2}, fonttitle=\bfseries, #1}
 
 \begin{theory}{What is Code Generation?}\\
     Code generation creates an explicit IR. In our case, it generates it into Java
-    Bytecode
+    Bytecode! Generally, its the process of converting your AST into executable code -
+    that can be binary, bytecode or something else!
 \end{theory}
 
 \begin{aside}{Errors, Reporting \& Recovery}\\
@@ -147,12 +148,18 @@ title={#2}, fonttitle=\bfseries, #1}
     proceed, allowing more errors to be detected.
 \end{aside}
 
-\begin{example}{Tokens}\\
-    Tokens are 
-\end{example}
+\begin{example}{Tokens \& Lexmes}\\
+    Tokens are the conversion of code into an abstract symbol used by the compiler that
+    represents a lexical unit. A lexical unit is something that is predetermined by the
+    compiler to be "something" that it understands. For instance, it could be a function
+    call, variable, expressions, or even just a symbol ($+$)!
 
-\begin{example}{Lexmes}\\
-    lexemes are the character sequence (actual text of forming the token)
+    Lexmes are a field within a token that specifies its name! This can be used for
+    debugging purposes. Imagine this piece of code:
+    $$int\ var = 8;$$
+    tokenising our line results in: $[int, var, =, 8, ;]$. These are the lexmes of the
+    token (the given names). Under the hood, the compiler will then assign these tokens
+    certain types with patterns to make it more digestible for the compiler.
 \end{example}
 
 \begin{theory}{Patterns}\\
@@ -172,13 +179,67 @@ title={#2}, fonttitle=\bfseries, #1}
     \end{itemize}
     Lets take a float as example:
     \begin{itemize}
-        \item TODO:
+        \item floatLiteral: $digit* fraction\ exponent?$
+                $|\ digit+$
+                $|\ digit+.exponent$
+        \item digit: $0\|1\|...\|9$ 
+        \item fraction: $.digit+$
+        \item exponent: $(E|e)(+|-)?digit+$
     \end{itemize}
+    Lets decode this: $?$ implies optional. This means that:
+    \begin{itemize}
+        \item e+1
+        \item E8
+        \item e-22
+    \end{itemize}
+    are all valid!
+    $*$ implies the prev item can repeat $0..n$ times!
+    $+$ implies the prev item can repeat $1..n$ times!
+    $|$ is OR - $a|b$ means pick between a OR b, but not both
 \end{example}
+
+\begin{aside}{How are tokens represented?}\\
+    the 3131 compiler represents tokens as an object. I like to think of it better as a
+    struct. It just a thing that holds metadata about each delimited item in the code!\\
+
+    In VC, tokens have a enum type (intliteral, PLUS SIGN, comma, ID for variables), a
+    lexeme, the column start and end of the token as well as the line number!
+\end{aside}
 
 \begin{example}{Finite State Machines}\\
     You can also use finite state machines to describe patterns!\\
     \includegraphics[width=\textwidth]{img/fsm-example1.png}
 \end{example}
+
+\begin{example}{Scanners \& longest possible matches}\\
+    Scanners want to create the longest possible match: Take the token $>=$ for example:
+    \begin{itemize}
+        \item we do not want our scanner to yield the two tokens: ${>, =}$ (even if it is
+            correct)
+        \item we want our scanner to tokenize greedily - it should instead form $>=$ as a
+            token even after seeing $>$ being a valid token, and only terminate on failing
+            pattern matches
+        \item what about failing pattern matches?
+    \end{itemize}\\
+    \indent It is not the scanner's job to solve syntax errors. $12.0e+ 32$ is invalid syntax, but
+    it is not our job (at least the scanner's!) to say that this is incorrect. \\
+    \indent Instead, the scanner will try its best to create the longest possible match, tokenising:
+
+    $$12.0 = float$$
+    $$e = id\ (var)$$
+    $$+ = PLUS$$ 
+    $$32 = INTLITERAL$$
+\end{example}
+
+\begin{aside}{lexical errors}\\
+    Lexical errors are few and far between - these are ??? someone explain
+    examples of lexical errors are:
+    \begin{itemize}
+        \item unterminated comment (/*)
+        \item error tokens: (\%)
+        \item unterminated string
+        \item illegal escape character
+    \end{itemize}
+\end{aside}
 
 \end{document}
