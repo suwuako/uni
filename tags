@@ -31,11 +31,11 @@
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!Tex	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/suwa/git/uni/	//
+!_TAG_PROC_CWD	/home/sw/uni/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	6.2.1	/v6.2.1/
+!_TAG_PROGRAM_VERSION	6.2.1	//
 !_TAG_ROLE_DESCRIPTION!Tex!xinput	bibliography	/bibliography (.bib) file/
 !_TAG_ROLE_DESCRIPTION!Tex!xinput	included	/external input file specified with \\include/
 !_TAG_ROLE_DESCRIPTION!Tex!xinput	input	/external input file specified with \\input/
