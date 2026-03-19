@@ -44,6 +44,14 @@ title={#2}, fonttitle=\bfseries, #1}
 
 \maketitle
 
+\section{Questions to-be-answered}
+
+\begin{enumerate}
+    \item for big theta, if big oh and big omega are different then do we have a big
+        theta?
+    \item meow
+\end{enumerate}
+
 \begin{theory}{What is an algorithm?} \\
     Algorithms are a set of precisely defined steps are executed based off mechanical steps - there is no intelligence involved, just follow the steps given.
 \end{theory}
@@ -180,6 +188,78 @@ title={#2}, fonttitle=\bfseries, #1}
     In doing so, we can say that the for $f(n)$ (which is the function of input size vs time) has
     a time complexity of $O(g(n))$ (keep in mind $g(n)$ will just be an equation that $f(n)$ will never
     exceed.)
+\end{theory}
+
+\begin{aside}{Is big-oh the be all-end all?}\\
+    We know that big-oh demonstrates the worst case time complexities. But theres alot of
+    data we're missing out on! What about best case? There are algorithms out there that
+    can run faster than other algos even if they are bounded by the same big-oh time
+    complexity! Think about running bubble sort on a sorted array with the first and last
+    items swapped vs selection sort. This is where big theta and omega comes in.
+\end{aside}
+
+\begin{theory}{Big Omega}\\
+    Big omega is the inverse of big-oh, it yields the asymtopic lower bound of a function.
+    In plain words, $\Omega(f(n))$ is a metric that given a long enough running time,
+    $f(n)$ will always be at least $\Omega(f(n))$. Another way to think about it is that
+    given a time complexity $f(n)$, it will never be less than $\Omega(f(n))$ so plotting
+    it on a graph will show that $\Omega(f(n))$ is bounded by $f(n)$.
+\end{theory}
+
+\begin{theory}{Big theta}\\
+    given that we know $O(f(n))$ and $\Omega(f(n))$, we can combine those two graphs
+    (where the space between big-oh and big omega represents big theta!). This means that
+    the growth rate is the same in both best and worst case senarios.
+\end{theory}
+
+\begin{theory}{sum and product property}\\
+    for all time complexities, we want to know how summing differnet time complexities and the product of them
+    chagnes the total time complexity!
+
+    for the sum of time complexities, we take the larger value: $$O(a) > O(b), O(a) + O(b)
+    = O(a)$$. As an example, this makes sense! $$O(n) + O(n^2) = O(n^2)$$
+
+    for the product of time complexities, the product of two time complexities will result
+    in the product of the growth rates: $$O(a) \times O(b) = O(ab)$$.
+\end{theory}
+
+\begin{example}{Heaps, Frequency tables and Hash tables}\\
+    To be honest, I don't want to explain this so this will be a challenge left to the
+    reader.
+\end{example}
+
+\begin{example}{Propositional Logic}\\
+    \begin{itemize}
+        \item Propositions are true/false statements. We can run operations on them!
+        \item $\neg P$ is a negation of $P$, i.e. !P.
+        \item $P \lor Q$ is $P$ OR $Q$, P $\|$ Q
+        \item $P \land Q$ is $P$ AND $Q$, P $\&\&$ Q
+        \item $P \Rightarrow Q$ is $P$ implies $Q$, i.e. if $P$ is true, then $Q$ is true. 
+        \item $P \iff Q$ is $P$ if and only if $Q$ which means that for $P$ to true, $Q$
+            also has to be true, and for $Q$ to be true, then $P$ also has to be true.
+            People have explained iff as $P \Rightarrow Q, Q \Rightarrow P$, but I like to
+            think of it as "they are either both true or they are either both false"
+    \end{itemize}
+\end{example}
+
+\begin{example}{Types of proofs}\\
+    In 3121, we need to prove algorithms. There are a couple techniques we can employ to
+    do so:
+    \begin{itemize}
+        \item Proof by induction
+        \item Proof by invarients
+        \item Proof by contradiction
+    \end{itemize}
+\end{example}
+
+\begin{theory}{Proof by induction}\\
+    Proof by induction is pretty fun. Generally, induction is used to prove a sequence of
+    things (that are ordered). If we prove that given any position, the next one holds a
+    certain property and the first item also holds that property, then we can extrapolate
+    that the entire set holds the property. For instance, for an infinitely long set of
+    stairs that are green, if we are given the property that at any green step, the next
+    step will be green and that the first step is green as well, then we can prove that
+    the entire set of stairs are green!
 \end{theory}
 
 \end{document}

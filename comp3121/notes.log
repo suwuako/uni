@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.2.8)  16 FEB 2026 22:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.2.8)  19 MAR 2026 15:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -611,11 +611,32 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks46
 \inpenc@posthook=\toks47
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+./notes.tex:47: Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.47 \section{Questions to-be-answered}
+                                       
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./notes.tex:47: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.47 \section{Questions to-be-answered}
+                                       
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -623,10 +644,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <assets/runtime_outlier.png, id=41, 1175.39125pt x 825.0825pt>
 File: assets/runtime_outlier.png Graphic file (type png)
 <use assets/runtime_outlier.png>
-Package pdftex.def Info: assets/runtime_outlier.png  used on input line 145.
+Package pdftex.def Info: assets/runtime_outlier.png  used on input line 153.
 (pdftex.def)             Requested size: 188.06644pt x 132.0159pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--147
+Underfull \hbox (badness 10000) in paragraph at lines 153--155
 [] \OT1/ptm/m/n/10 We
  []
 
@@ -639,60 +660,69 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 153--168
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 153--168
+Underfull \hbox (badness 1577) in paragraph at lines 161--176
 \OT1/ptm/m/n/10 What does that acu-tally mean? lets take a look
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--168
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--168
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--168
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--168
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
 
 
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 231--233
 
-[2
+ []
 
- <./assets/runtime_outlier.png (PNG copy)>] (./notes.aux)
+
+
+[2 <./assets/runtime_outlier.png (PNG copy)>]
+
+
+
+[3
+
+] (./notes.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22256 strings out of 475171
- 475872 string characters out of 5767096
- 981876 words of memory out of 5000000
- 44885 multiletter control sequences out of 15000+600000
- 588161 words of font info for 90 fonts, out of 8000000 for 9000
+ 22284 strings out of 475171
+ 476403 string characters out of 5767096
+ 986876 words of memory out of 5000000
+ 44912 multiletter control sequences out of 15000+600000
+ 590294 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 116i,11n,121p,441b,1063s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,11n,121p,441b,1065s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on notes.pdf (2 pages, 288209 bytes).
+Output written on notes.pdf (3 pages, 296772 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 100 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
