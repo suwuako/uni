@@ -187,7 +187,10 @@ title={#2}, fonttitle=\bfseries, #1}
     \]
     In doing so, we can say that the for $f(n)$ (which is the function of input size vs time) has
     a time complexity of $O(g(n))$ (keep in mind $g(n)$ will just be an equation that $f(n)$ will never
-    exceed.)
+    exceed.)\\
+
+    Keep in mind that big O tends to overestimate the complexity (by virute of upper
+    bounding at an asymtopic point).
 \end{theory}
 
 \begin{aside}{Is big-oh the be all-end all?}\\
@@ -300,5 +303,4 @@ title={#2}, fonttitle=\bfseries, #1}
     We would need to prove that not only mergesort "sorts" correctly, but also it runs in
     $O(nlogn)$ time for a proof to be complete.
 \end{example}
-
 \end{document}
