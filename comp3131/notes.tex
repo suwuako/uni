@@ -221,9 +221,9 @@ title={#2}, fonttitle=\bfseries, #1}
             pattern matches
         \item what about failing pattern matches?
     \end{itemize}\\
-    \indent It is not the scanner's job to solve syntax errors. $12.0e+ 32$ is invalid syntax, but
-    it is not our job (at least the scanner's!) to say that this is incorrect. \\
-    \indent Instead, the scanner will try its best to create the longest possible match, tokenising:
+    It is not the scanner's job to solve syntax errors. $12.0e+ 32$ is invalid syntax, but
+    it is not our job (at least the scanner's!) to say that this is incorrect.
+    Instead, the scanner will try its best to create the longest possible match, tokenising:
 
     $$12.0 = float$$
     $$e = id\ (var)$$
@@ -242,4 +242,89 @@ title={#2}, fonttitle=\bfseries, #1}
     \end{itemize}
 \end{aside}
 
+\begin{aside}{Syntax and Semantics (langauge)} \\
+    \begin{enumerate}
+        \item John eats apples
+        \item apples eat john
+    \end{enumerate}
+
+    Syntax is only concerened with the form/structure of english sentences and its grammar
+    Semantics is concered with the meaning of the sentence
+\end{aside}
+
+\begin{theory}{Syntax and Semantics (Progrmaming languages)}\\
+    \begin{itemize}
+        \item syntax refers to the form/structure of programs
+        \begin{itemize}
+            \item no concern with the meaning of programs
+            \item specificed by a context free grammar
+        \end{itemize}
+    \item semantics refer to two notions:
+        \begin{itemize}
+            \item Static semantics refer to restrictions enforced at compile time 
+                \begin{itemize}
+                    \item all identifiers (variables) are declared before used 
+                    \item assignment must be type compatible (int identifier cannot be
+                        equals to a string)
+                    \item operands must be type compatible
+                    \item 
+                \end{itemize}
+            \item runtime semantics refer to what the program does/computes
+                // TODO: fill ts out
+        \end{itemize}
+    \end{itemize}
+\end{theory}
+
+\begin{example}{Static semantics}\\
+    ```i = 5;``` 
+    Syntactically, this is fine. But we have not declared the variable `i` beforehand.
+\end{example}
+
+\begin{aside}{Semantic analyser and semantic errors}\\
+    aside
+\end{aside}
+
+\begin{theory}{Context Free Grammar}\\
+    used to specify language's syntax 
+    simple 
+    regular grammars
+\end{theory}
+
+\begin{theory}{CFG's formal definitions}\\
+    grammar is a quadruple $(V_T, V_N, S, P)$
+    $V_T$ -> finite set of terminal symbols (tokens)
+    $V_N$ -> finite set of nonterminal symbols
+    $S$ -> unique start symbol 
+    $P$ -> finite set of rules 
+\end{theory}
+
+\begin{example}{Leftmost \& rightmost derivations} \\
+    example
+\end{example}
+
+\begin{theory}{What is a language} \\
+    langauge is defined by a grammar : all the sentences derived from a grammar.
+
+\end{theory}
+
+\begin{theory}{How do we specify a cfg}\\
+    BNF
+\end{theory}
+
+\begin{theory}{How do we derive if somethign is syntacially correct}\\
+    build a parse tree
+\end{theory}
+
+\begin{aside}{Grammar summary}\\
+    how langauge is defined with CFG
+    syntax and semantics
+    precednece and associativity of grammar
+    CFG has four components
+    parsing: check for syntax errors and construct AST
+\end{aside}
+
+\begin{example}{EBNF}\\
+    example
+\end{example}
+    
 \end{document}
