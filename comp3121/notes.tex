@@ -49,7 +49,7 @@ title={#2}, fonttitle=\bfseries, #1}
 \begin{enumerate}
     \item for big theta, if big oh and big omega are different then do we have a big
         theta?
-    \item meow
+    \item Proof by invareints review
 \end{enumerate}
 
 \begin{theory}{What is an algorithm?} \\
@@ -258,8 +258,47 @@ title={#2}, fonttitle=\bfseries, #1}
     certain property and the first item also holds that property, then we can extrapolate
     that the entire set holds the property. For instance, for an infinitely long set of
     stairs that are green, if we are given the property that at any green step, the next
-    step will be green and that the first step is green as well, then we can prove that
-    the entire set of stairs are green!
+    step will be green. \\
+
+    There exists another kind of induction, strong induction. Normal indcution assumes
+    something at a point: at $k$, the $k+1$th step is green. However for strong induction,
+    we assume it is true from the base case to $k$, i.e. $1, 2, ..., k$th steps are
+    all green. \\
+
+    To prove for induction, we have to prove three things:
+    \begin{enumerate}
+        \item the base case is correct
+        \item assume it is true for a $k$ (or up to $k$ if we are doing strong induction)
+        \item prove it is true for the $k+1$th item
+    \end{enumerate}
+    An induction proof is not complete without these three properties.
 \end{theory}
+
+\begin{theory}{Proof by invarients}\\
+    Proof by invarients is pretty similar to induciton: We wnat to prove that a property P
+    holds true over an algorithm, and that if P is true at the start, and if we can prove
+    that at any step we can preserve P, then P holds true throughout.
+\end{theory}
+
+\begin{theory}{Proof by contradiction}\\
+    We can prove that something is true by thinking about its negation. If we assume that
+    $\neg P$ is true, and that we somehow prove that this is false, then we can prove that
+    $P$ is true. This feels flimsy but it holds true. 
+
+    For any statement $P$, it either has to be true or false. Negating that statement $P$ means
+    that $\neq P$ is the opposite of $P$. As such, if $\neq P$ is false, then $P$ is true.
+\end{theory}
+
+\begin{example}{Algorithm Reeasoning}\\
+    \begin{itemize}
+        \item For an algorithm, we need to prove correctness and efficiency
+        \item as such, we need to prove that it gives the right answer and jusitfy the
+            time complexity
+    \end{itemize}
+
+    Lets take mergesort for example:
+    We would need to prove that not only mergesort "sorts" correctly, but also it runs in
+    $O(nlogn)$ time for a proof to be complete.
+\end{example}
 
 \end{document}
