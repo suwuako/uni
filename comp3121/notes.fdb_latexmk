@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1773974623.85599 "notes.tex" "notes.pdf" "notes" 1773974624.7182 2
+["pdflatex"] 1774493265.37573 "notes.tex" "notes.pdf" "notes" 1774493266.20979 2
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1764115200 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -165,8 +165,8 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1771206181.01812 4547809 72a019b3ea2e5a9ca986a536dc67eb1c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1771205873 7759955 5ed4f887faba4f5eebdc981107c4fc71 ""
   "assets/runtime_outlier.png" 1771282936.26372 179116 ce1cf199b63b7401a540e095fca6d528 ""
-  "notes.aux" 1773974624.6312 144 b0be29cb35e0ca50964797a3c19e4043 "pdflatex"
-  "notes.tex" 1773974510.25126 13365 10ba0dce55c9d27b5b5f3482ab443d5c ""
+  "notes.aux" 1774493266.12544 144 b0be29cb35e0ca50964797a3c19e4043 "pdflatex"
+  "notes.tex" 1774493264.41441 13937 6310ecc3be517ae1cabd2ffc31b5839a ""
   (generated)
   "notes.aux"
   "notes.log"

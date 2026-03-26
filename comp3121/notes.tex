@@ -292,7 +292,7 @@ title={#2}, fonttitle=\bfseries, #1}
     that $\neq P$ is the opposite of $P$. As such, if $\neq P$ is false, then $P$ is true.
 \end{theory}
 
-\begin{example}{Algorithm Reeasoning}\\
+\begin{example}{Algorithm Reeasoning: Mergesort}\\
     \begin{itemize}
         \item For an algorithm, we need to prove correctness and efficiency
         \item as such, we need to prove that it gives the right answer and jusitfy the
@@ -303,6 +303,19 @@ title={#2}, fonttitle=\bfseries, #1}
     We would need to prove that not only mergesort "sorts" correctly, but also it runs in
     $O(nlogn)$ time for a proof to be complete.
 
-    Mergesort takes an array $A$, and splits it in half every time. 
+    Mergesort takes an array $A[l..r]$, and splits it in half every time. If $l = r$, then
+    it simply returns (since there is just one item and theres nothing left to sort).
+    \begin{itemize}
+        \item Otherwise, you get the midpoint: $(l + r)/2$.
+        \item Apply the algorithm recursively to $A[l, m]$ and $A[m+1, r]$
+        \item merge the subarrays $A[l..m]$ and $A[m+1..r]$, into a sorted subarray
+            $A[l..r]$.
+    \end{itemize}
+
+    We need a merge operation to successfully merge it though:
+    \begin{itemize}
+        \item Create a buffer $B$ of size $r - l + 1$. 
+        \item 
+    \end{itemize}
 \end{example}
 \end{document}
