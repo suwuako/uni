@@ -5,6 +5,7 @@
 \usepackage{makecell}
 \usepackage[most]{tcolorbox}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{amssymb}
 
 
@@ -312,10 +313,93 @@ title={#2}, fonttitle=\bfseries, #1}
             $A[l..r]$.
     \end{itemize}
 
-    We need a merge operation to successfully merge it though:
+    We need a merge operation to successfully merge the two subarrays $A[l..m]$ and
+    $A[m+1..r]$.
     \begin{itemize}
         \item Create a buffer $B$ of size $r - l + 1$. 
-        \item 
+        \item fill $B$ from left to right using indices $i, j$ that point to the smallest
+            uncopied elements of the two subarrays
+        \item copy the smaller of $A[i]$ or $A[j]$ until they go out of bounds
+        \item overwrite $A[l..r]$ with $B$ when done.
     \end{itemize}
 \end{example}
+
+\begin{example}{Mergesort Proof}\\
+    There are two parts we need to prove correctness for: 
+    \begin{itemize}
+        \item mergesort(A, l, r)
+        \item merge(A, l, m, r)
+    \end{itemize}
+
+    Lets first prove that merge() successfully creates a sorted array using two sorted
+    subarrays:
+    \begin{itemize}
+        \item Invarient: At any time the items copied into $B$ so far are the smallest elements of
+            $A[l..r]$ in sorted order.
+        \item Initialisation: This holds since nothing has been copied into $B$
+        \item Maintanance: Each iteration copies the smallest item between the two arrays, so the
+            invarient holds.
+        \item termination: When all elements have been copied, merge terminates.
+        \item As such, we can prove that given two sorted subarrays, merge() successfully
+            creates a larget sorted array.
+    \end{itemize}
+
+    What about the mergesort step?
+    Let us use induction.
+    \begin{itemize}
+        \item Base case: Our array of size 1 is already sorted. 
+        \item Inductive assumption: Assume that mergesort correctly sorts all arrays of
+            size up to $k$
+        \item For an array of size $k + 1$, we can represent it as two split ararys of
+            sizes $(k + 1)/2$. 
+        \item Running mergesort on the two arrays results in two sorted arrays. 
+        \item Running merge on both arrays creates a sorted array of size $k + 1$.
+    \end{itemize}
+
+    By induction, the algorithm is correect for all sizes.
+\end{example}
+
+\begin{theory}{Greedy Algorithms}\\
+    A greedy algorithm is an algorithm that solves a problem by solving it in stages. 
+
+    At each stage, it selects the best possible choice (that it knows of locally). The
+    difficult part of greedy problems are actually proving them :c
+
+    The tradeoff for greedy is that although simple to come up and describe, they don't
+    consider all (or future) possibilities. So proofs are going to be annoying.
+\end{theory}
+
+\begin{aside}{Greedy proofs}\\
+    There are two main ways to prove greedy algos:
+    \begin{itemize}
+        \item Greedy stays ahead
+        \item exchange argument
+    \end{itemize}
+
+    For these part of the notes, I'll be making use of a combination of 3121 lecture
+    slides and \href{https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/handouts/120\%20Guide\%20to\%20Greedy\%20Algorithms.pdf}{stanford's
+    guide to greedy algos}
+\end{aside}
+
+\begin{aside}{Greedy formats}\\
+    Generally, greedy algorithms are used to solve optimisations (minimise/maximise) based
+    off a set of constraints.
+    \begin{itemize}
+        \item Maximise attending events without attending overlapping events
+        \item Minimise number of jumps over a pond without falling into the water
+        \item Minimise number of edges chosen while maintaining connectivity.
+    \end{itemize}
+
+    When we write a greedy proof, we aim for two things:
+    \begin{itemize}
+        \item Correctness - is it right? does it obey the constraints?
+        \item Optimality - is it optimal? Does it maximise/minimise the quantity you want?
+    \end{itemize}
+\end{aside}
+
+\begin{theory}{Greedy Stays Ahead}\\
+    GSA aims to prove that according to some measure, the greedy algorithm is always at
+    least as far as the optimal solution during each iteration of the algorithm.
+\end{theory}
+
 \end{document}
