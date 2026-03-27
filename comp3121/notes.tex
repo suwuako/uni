@@ -399,7 +399,125 @@ title={#2}, fonttitle=\bfseries, #1}
 
 \begin{theory}{Greedy Stays Ahead}\\
     GSA aims to prove that according to some measure, the greedy algorithm is always at
-    least as far as the optimal solution during each iteration of the algorithm.
+    least as far as the optimal solution during each iteration of the algorithm. We can
+    use this established fact to prove that greedy does in fact, stay ahead.
+
+    The typical GSA format is:
+    \begin{enumerate}
+        \item Solution definition: Define your variables, your algo will produce some $A$
+            and gets compared against some $A'$ which is optimal.
+        \item Cost function: You want to come up with some cost function that can compare
+            both your greedy and optimal solution where you can show the cost of $A$ and
+            $A'$ at every step 
+        \item Prove GSA: we need to prove that the cost of $A_i$ stays ahead or is not
+            lesser than $A'_i$. This is done inductively
+        \item Prove optimality: Using the fact that GSA, you can show that greedy is
+            optimal. You can usually do this by assuming that greedy isn't optimal, and
+            proving that greedy stays ahead to derive a conclusion.
+    \end{enumerate}
+\end{theory}
+\begin{aside}{Challenge of GSA}\\
+    \begin{itemize}
+        \item cost functions can be difficult to find
+        \item often better to prove that if greedy stays ahead according to your cost function, 
+            then the algorithm is optimal before showing that greedy actually stays ahead.
+        \item another way to think about it is by thinking of greedy as not falling behind
+    \end{itemize}
+\end{aside}
+
+\begin{example}{GSA: Cell towers}\\
+    Let us tackle an example problem: Along the long, straight road from Balladonia (in the West) to Caiguna (in the
+    East), houses are scattered quite sparsely, sometimes with long gaps between two consecutive
+    houses. Telstra must provide mobile phone service to people who live alongside the road, and
+    the range of Telstra’s cell tower is 5km.
+
+    Task: Design an algorithm for placing the smallest number of cell towers alongside the road,
+    that is sufficient to cover all houses.
+
+    Let our greedy solution be to place the cell towers 5km to the right of the leftmost
+    house.
+
+    Firstly let us claim that for all $k \geq 1$, the $k$th tower in the greedy selection
+    is at least as far east as the $k$th tower in the optimal selection. (here we are
+    assuming that if greedy stays ahead, then our algorithm is optimal).
+
+    Let us do this inductively. For the first cell tower, (k = 1), greedy places $g_1$ 5km
+    to the right of the leftmost house. For the optimal solution, it has to cover at least
+    the first house. As such, it can place the cell tower in any interval between $[h_1 -
+    5.. h_1 + 5]$, where $h_1$ is the first house. We know that $g_1 = h_1 + 5$. The
+    optimal solution cannot place a cell tower further east, since it would not cover $h$.
+    As such, $g_1 \geq o_1$.
+
+    Let us assume that this is true for $g_k$ and $o_k$: $$g_k \geq o_k$$
+
+    For tower $k + 1$, we need to prove that $g_{k+1} \geq o_{k+1}$. Given that we know
+    the leftmost uncovered house $h'$ exists where $g_k$ and $o_k$ doesn't cover $h'$, we
+    know that greedy will place $g_{k+1} -5 = h$. For the sake of contradition, assume
+    that $o_{k+1} > g_{k+1}$ while covering h. If $o_{k+1} > g_{k+1}$, then $o_{k+1} > h +
+    5$. But that would mean taht $o_{k+1}$ is not covering $h$, so through cotradiction we
+    can prove that $g_{k+1} \geq o_{k+1}$
+\end{example}
+
+\begin{theory}{Exchange Arguments}\\
+    The exchange argument proves for optimality by showing that you can iteratively
+    transform any optimal solution into the solution provided by the greedy solution
+    without affecting cost and optimality.
+
+    \begin{enumerate}
+        \item Define solutions: for a greedy solution $G$ and an optimal solution $O$, so
+            define variables explicitly
+        \item Compare solns: Show that if $O \neq G$, then they differ in some way (or at
+            some point). This could be that things are out of order between $O$ and $G$,
+            or that theres a piece in $G$ that is missing in $O$, or something else.
+        \item Exchange pieces: Show that you can transform $O$ by changing some piece in
+            $O$ for some piece of $G$. this can be order, items, etc, but you need to
+            prove that this exchange did not change the optimality of $O$ and yet have a
+            different solution.
+        \item Iterate: you need to prove/argue that this exchange has lowered the
+            diferences between $O$ and $G$ and that you can iteratively do this to $O$ to
+            transform it into $G$ without affecting the outcome
+    \end{enumerate}
+\end{theory}
+
+\begin{aside}{More exchange arguments \& pitfalls}\\
+    \begin{itemize}
+        \item The greedy solution could be optimal even if $G \neq O$. There can be
+            multiple optimal solutions
+        \item One thing that helped was thinking of the optimal solution as an "alternate"
+            solution that just happened to be optimal.
+        \item Your solution may need iterative transformations to turn $O$ into $G$. One
+            modification may make them more similar, but not equal. As such, we need to
+            end our proofs by showing that we can indeed iterate over $O$ so the
+            transformation can happen
+        \item Proof must also explain why exchanging a piece $g$ and $o$ can exist in the
+            first place. Usually this is trivial but you still need to point out that $O
+            \neq G$.
+    \end{itemize}
+\end{aside}
+
+\begin{example}{Exchange argument: Tape storage}\\
+    A list of $n$ files of size $L_i$ have to be stored on a tape. Each file is not
+    equally likely to be needed, and one must start at the beginning of the tape and scan
+    until they find what they need (linear search).
+
+    Task: Order the files on the tape such that the expected retrival time is minimised.
+
+    Solution: For an individual file $f_i$, its expected retrieval time is the sum of the
+    all previous files multiplied by their individual probabilities: 
+    $$Expected(f_i) = \sum_{j=1}^{i-1} (L_1 + ... + L_j) \times P_j$$
+    As such, our greedy solution $G$ would store files in decreasing value of $L_j\times
+    P_j$
+
+    Assume that there is some optimal solution $O$, which is an ordered list of files $f$.
+    Let us then assume that there is some $O_i \neq G_i$ (since if they were equal, greedy
+    would be optimal). This would mean that there is a different ordering between $O_i$ 
+    and $G_i$. 
+
+    This would mean that $L_i \times P_i$ for $O_i$ 
+\end{example}
+
+\begin{theory}{Graph applications}\\
+    theory
 \end{theory}
 
 \end{document}
