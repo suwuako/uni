@@ -1,0 +1,50 @@
+\documentclass[journal, letterpaper]{IEEEtran}
+\usepackage{lipsum}
+\usepackage{titlesec}
+\usepackage[table]{xcolor}
+\usepackage{makecell}
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+
+
+\titleformat{\section}
+    {\centering\normalfont\Large\bfseries}
+    {}
+    {} 
+    {}
+
+\newtcolorbox{theory}[2][]{breakable,sharp corners, skin=enhancedmiddle jigsaw,
+parbox=false, boxrule=0mm, leftrule=2mm, boxsep=0mm, arc=0mm, outer arc=0mm,
+attach title to upper, after title={\ },
+coltitle=black, coltext=black,
+colback=blue!10, colframe=blue!50,
+title={#2}, fonttitle=\bfseries, #1}
+
+\newtcolorbox{example}[2][]{breakable,sharp corners, skin=enhancedmiddle jigsaw,
+parbox=false, boxrule=0mm, leftrule=2mm, boxsep=0mm, arc=0mm, outer arc=0mm,
+attach title to upper, after title={\ },
+coltitle=black, coltext=black,
+colback=gray!10, colframe=gray!50,
+title={#2}, fonttitle=\bfseries, #1}
+
+\newtcolorbox{aside}[2][]{breakable,sharp corners, skin=enhancedmiddle jigsaw,
+parbox=false, boxrule=0mm, leftrule=2mm, boxsep=0mm, arc=0mm, outer arc=0mm,
+attach title to upper, after title={\ },
+coltitle=black, coltext=black,
+colback=red!10, colframe=red!50,
+title={#2}, fonttitle=\bfseries, #1}
+
+
+\title{COMP3131 Notes}
+\author{Ronnie Low}
+\date{Term 1, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{theory}{}
+    theory1
+\end{theoy}
+
+\end{document}
