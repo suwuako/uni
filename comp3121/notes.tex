@@ -45,12 +45,16 @@ title={#2}, fonttitle=\bfseries, #1}
 
 \maketitle
 
-\section{Questions to-be-answered}
+
+\begin{align}
+    Questions
+\end{align}
 
 \begin{enumerate}
     \item for big theta, if big oh and big omega are different then do we have a big
         theta?
     \item Proof by invareints review
+    \item greedy GSA and exhcange proof reviews (does it look right lmao)
 \end{enumerate}
 
 \begin{theory}{What is an algorithm?} \\
@@ -498,26 +502,135 @@ title={#2}, fonttitle=\bfseries, #1}
 \begin{example}{Exchange argument: Tape storage}\\
     A list of $n$ files of size $L_i$ have to be stored on a tape. Each file is not
     equally likely to be needed, and one must start at the beginning of the tape and scan
-    until they find what they need (linear search).
+    until they find what they need (linear search).\\
 
     Task: Order the files on the tape such that the expected retrival time is minimised.
 
-    Solution: For an individual file $f_i$, its expected retrieval time is the sum of the
-    all previous files multiplied by their individual probabilities: 
-    $$Expected(f_i) = \sum_{j=1}^{i-1} (L_1 + ... + L_j) \times P_j$$
-    As such, our greedy solution $G$ would store files in decreasing value of $L_j\times
-    P_j$
+    Claim 1: For a file $f_i$ that has files infront of it, its
+    retrieval time would be the sum of all files up to it: $$T_i = (L_1 + ... + L_{i})$$ 
 
-    Assume that there is some optimal solution $O$, which is an ordered list of files $f$.
-    Let us then assume that there is some $O_i \neq G_i$ (since if they were equal, greedy
-    would be optimal). This would mean that there is a different ordering between $O_i$ 
-    and $G_i$. 
+    Claim 2: The expected retrieval time of $F_i$, given that $F_i$ was requested
+    would be the product of $p_i$ with $T_i$
+    $$E_i = p_i \times T_i = p_i \times (L_1 + ... + L_{i})$$
 
-    This would mean that $L_i \times P_i$ for $O_i$ 
+    Claim 3: For the expected retrieval time of the tape, it would be the sum the expected
+    retirieval times of all files: $$\sum_{i=1}^{n} E_i$$
+
+    Aside: Intuitively, we have two variables we need to consider for each file:
+    \begin{itemize}
+        \item Probability $p_i$ 
+        \item Length $L_i$
+    \end{itemize}
+    An expected outcome of a given set of actions is the average of said actions if it was
+    done infinitely. As such, an intuitive way of weighing the cost of a file
+    $f_i$ is to consider how many times $L_i$ will be passed over to reach some
+    other file compared to how many times $f_i$ is the target file. To justify $f_i$
+    occupying a certain space, both metrics matter. The higher $p_i$ is, the closer to the
+    front we want it, and the higher $L_i$ is, the further from the front we want it.
+
+    We can represent this pull in opposite directions as the ratio of its probability against its size:
+    $$\frac{p_i}{L_i}$$
+
+    Solution: Let us order our files in desending $\frac{p_i}{L_i}$.\\
+
+    Proof: let our greedy solution be $G$, and some optimal solution be $O$. $G_i$ and
+    $O_i$ represents the $i$th file in ascending order. Let us assume at some point $G
+    \neq O$, and diverges at some $i$ that $G_i \neq O_i$ (since if $G$ = $O$, then greedy
+    would be optimal.)
+
+    Let us prove by contradiction. Assume that $O$ is minimised, but at some $O_i$ and
+    $O_{i+1}$ that $$\frac{P_i}{L_i} < \frac{P_{i+1}}{L_{i+1}}$$
+
+    Before the swap, the expected retrieval time ($E$) is
+
+    \begin{align*}
+        E &= L_1 p_1 + ... \\
+          &+ (L_1 + ... + L_i) P_i \\
+          &+ (L_1 + ... + L_i + L_{i+1}) P_{i+1}\\
+          &+ ... + (L_1 + ... + L_n) + P_n
+    \end{align*}
+
+    After swapping $F_i$ and $F_{i+1}$:
+    \begin{align*}
+        E' &= L_1 p_1 + ... \\
+           &+ (L_1 + ... + L_{i+1}) P_{i+1}\\
+           &+ (L_1 + ... + L_{i+1} + L_i )P_i \\
+           &+ ... + (L_1 + ... + L_n) P_n
+    \end{align*}
+
+    As such, 
+
+    $$E - E' = L_i P_{i + 1} - L_{i+1} P_i$$
+    Let us rearrange our assumption that 
+    $$\frac{P_i}{L_i} < \frac{P_{i+1}}{L_{i+1}} \Rightarrow P_i L_{i+1} < P_{i+1} L_i$$
+    As such, 
+    $$L_i P_{i + 1} - L_{i+1} P_i > 0$$
+    Therefore, $E > E'$. However, our assumption was that 
+    $$\frac{P_i}{L_i} < \frac{P_{i+1}}{L_{i+1}}$$, which would imply that $E$ isn't
+    optimal. Through proof by contradiction, a larger $\frac{P_i}{L_i}$ should be ordered
+    first to minimise expected retrieval time. We can conduct this swap can be done
+    iteratively to transform an optimal solution into the greedy solution.
 \end{example}
 
-\begin{theory}{Graph applications}\\
+\begin{theory}{MODULE 2 (come back to ts) Graph applications}\\
     theory
+\end{theory}
+\begin{aside}{Graph applications}\\
+    aside
+\end{aside}
+\begin{example}{Graph applications}\\
+    aside
+\end{example}
+
+\begin{theory}{What is dynamic programming}\\
+    Dynamic programming is a teechnique where you solve a problem by decomposing it into 
+    subproblems that come up multiple
+    times. As such, you would solve each subproblem once and store it somewhere so its a
+    O(1) access, instead of having to recompute that value.
+
+    The benefits of DP is that you can consider multiple (or all) options at each stage
+    without recomputing said stage. More often than not, these subproblems are overlapping
+    (occur multiple times).
+\end{theory}
+
+\begin{aside}{DP Overview}\\
+    Parts of a DP algo:
+    \begin{itemize}
+        \item A definition of the subproblems
+        \item A recurrence relation (how one subproblem leads to smaller
+            subproblems)
+        \item Base cases, which are the trivial subproblems where recurrences
+            aren't needed
+    \end{itemize}
+
+    DP execution:
+    \begin{itemize}
+        \item DP problems are iterative in a bottom up sense. You need to compute smaller
+            subproblems (the base cases) before being able to compute larger and larger
+            subproblems using the recurrence.
+        \item Answers to subproblems will be stored in a lookup table (usually an array
+            indexed by the parameters of the subproblem).
+    \end{itemize}
+
+    DP format: 
+    \begin{itemize}
+        \item We need to solve the subproblem in an order which follows the dependencies
+            (you need to solve smaller subproblems to solve a subproblem)
+        \item The original problem might be a subproblem, or it can be solved by combining
+            several subproblems. 
+        \item Time complexity is usually given by the number of subproblems multiplied by
+            the "average" time taken to solve a subproblem
+    \end{itemize}
+\end{aside}
+
+\begin{theory}{DP correctness}\\
+    To prove that a DP is correct:
+    
+    \begin{itemize}
+        \item The recurrence correectly relates subproblems together
+        \item Base cases are correctly solved
+        \item Overall answer is correctly solved
+    \end{itemize}
 \end{theory}
 
 \end{document}
