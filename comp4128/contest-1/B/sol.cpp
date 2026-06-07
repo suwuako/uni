@@ -51,7 +51,57 @@ int main() {
   ll hi = n - 1;
   ll s = 0;
   print[n] = '\0';
+  // find first winner occurence
+  while (hi > lo && rounds[hi] != winner) {
+    print[hi] = '_';
+    hi--;
+  }
+  s++;
+  win_count--;
+  print[hi] = winner;
+  hi--;
 
+  bool found_win = false;
+  bool found_lose = false;
+  // take one off each until you cant take one from both until both are 0
+  while (win_count > 0 && lose_count > 0) {
+    while (win_count > 0 && lose_count > 0) {
+      if (rounds[hi] == winner) {
+        found_win = true;
+        break;
+      } else {
+        print[hi] = '_';
+        hi--;
+        lose_count--;
+      }
+    }
+
+    while (win_count > 0 && lose_count > 0) {
+      if (rounds[lo] == loser) {
+        found_lose = true;
+        break;
+      } else {
+        print[lo] = '_';
+        lo++;
+        win_count--;
+      }
+    }
+
+    if (found_win && found_lose) {
+      print[lo] = loser;
+      print[hi] = winner;
+      win_count--;
+      lose_count--;
+      lo++;
+      hi--;
+      s += 2;
+      found_win = false;
+      found_lose = false;
+    } else {
+      break;
+    }
+
+  }
 
   cout << s << endl;
   cout << print << endl;
