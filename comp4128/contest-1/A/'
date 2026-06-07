@@ -1,0 +1,86 @@
+#include <algorithm>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define space << " " << 
+#define pause sleep(1)
+
+ll start_times[100100];
+ll end_times[100100];
+
+ll find_pivot(ll min, ll max) {
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> distrib(min, max);
+  ll ret = distrib(gen);
+  return ret;
+}
+
+void swap(ll i, ll j) {
+  ll a = start_times[i];
+  ll b = start_times[j];
+  start_times[i] = b;
+  start_times[j] = a;
+
+  ll c = end_times[i];
+  ll d = end_times[j];
+  end_times[i] = d;
+  end_times[j] = c;
+}
+
+
+ll partition(ll start, ll end) {
+  ll pivot_index = find_pivot(start, end);
+  ll pivot_value = start_times[pivot_index];
+  cout << start space end space pivot_index << endl;
+  swap(start, pivot_index);
+  ll l = start + 1;
+  ll r = end;
+  while (true) {
+  for (int i = 0; i < meetings; i++) {
+    cout << start_times[i] << ", ";
+  }
+  cout << endl;
+    while (l <= r && start_times[l] <= pivot_value) { l++; }
+    while (l <= r && start_times[r] >= pivot_value) { r--; }
+    swap(l, r);
+    if (l > r) {
+      break;
+    }
+  }
+  swap(r, pivot_index);
+  return r;
+}
+
+void qsort_startend(ll start, ll end) {
+  if (end <= start) return;
+
+  ll pivot_index = partition(start, end);
+  qsort_startend(start, pivot_index - 1);
+  qsort_startend(pivot_index, end);
+}
+
+int main() {
+  ll meetings;
+  cin >> meetings;
+
+  for (int i = 0; i < meetings; i++) {
+    ll start, end;
+    cin >> start >> end;
+    start_times[i] = start;
+    end_times[i] = end;
+  }
+
+  qsort_startend(0, meetings);
+  cout << "start times \n";
+  for (int i = 0; i < meetings; i++) {
+    cout << start_times[i] << ", ";
+  }
+  cout << endl;
+  cout << "end_times \n";
+  for (int i = 0; i < meetings; i++) {
+    cout << end_times[i] << ", ";
+  }
+}
