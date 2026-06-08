@@ -1,1 +1,39 @@
-A) easy
+A) was pretty easy, had one problem where i read 10^5 and thought it meant 10000, so i
+ended up having a bug that i submitted. setting to 100k fixed it
+
+O(n) solution, we just keep track of the lowest meat price and if we see another lower
+meat price, then we replace it. every purchase of meat uses the current lowest meat price,
+since that is the "lowest" price we can buy at it at a point avaliable to us
+
+B) was pretty easy!!! (foreshadowing for future problems requireing a bazillion
+submissions)initially i thought that there had two cases: either -ve start and -ve end,
++ve start pos end OR pos/neg start and neg/pos end. the first case is easy, since we just
+loop over and find the local maximum, and add to sum. But int he second case, you would
+need to traverse -ve first, then +ve first, which would be O(2n) which was kinda annaoying
+to implement but otherwise its chill
+
+C) this got hard........ i misread the question like 5 times bruh :sob: initially i
+thought it jsut meant read the max number of books so i qsort() and then picked from
+bottom up until the number of time left reached zero. But then that was not what the
+question was asking and then i realised that it meant from any `i`, we pick `i+1`. I wrote
+a naieve solution that was n^2 just to make sure this was the interpretation (so at least
+i'd get time exceeded instead of test failed on 3... LOL). After that I thought about it a
+bit more and realised that i can just a sliding window method where by sliding the window
+i +new and -old, so that ends up O(n).
+
+D) this was a knowledge bottleneck... there were qite a few issues
+- firstoy, my first issue was that I'd have a checker to determine if there exists a
+  solution for k days apart which woudl involve calling std::qsort() and then using a for
+  loop to greedily take the first items from the sorted array so its "a bit faster" but
+  actually it ended up n^2...
+- fixed this by realising instedad of calling a for loop repeatedly you can do this
+  mathematically by
+    1) precomputing the cycles: for every k day gap, this means that we pick the top [k]
+    items (from the sorted quest coin array). This would mean that precomputing all cycles
+    up to `num_days` is O(n), and the calling of this is O(1)
+    2) instead of using a for loop to determine how many cycles we need, we would instead
+    need to take the function checker's k days and do rycles[k+] * num_days/(k + 1) + the
+    remainder which is cycles[num_days % k]
+- turns out qsort is also slowing it down... becuase i used a lambda function to cmp.
+  Turns out calling std::sort() is the smart solution and reimplmenting qsort from scratch
+  is stupid :(
